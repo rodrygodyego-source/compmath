@@ -1,6 +1,6 @@
 /**
- * Controller: Integração Curricular
- * Matriz inteligente que relaciona conteúdos de Matemática com a BNCC Computação e o Currículo de Pernambuco.
+ * Controller: Integração Curricular (CompMath v2.2)
+ * Matriz curricular com filtros dinâmicos em cascata por Etapa, Ano e Unidade Temática.
  */
 
 const IntegracaoController = {
@@ -9,12 +9,15 @@ const IntegracaoController = {
   selectedUnidade: 'todas',
   searchQuery: '',
 
+  ETAPAS_ANOS: {
+    "Ensino Fundamental (Anos Finais)": ["6º Ano", "7º Ano", "8º Ano", "9º Ano"],
+    "Ensino Médio": ["1º Ano EM", "2º Ano EM", "3º Ano EM"],
+    "EJA": ["EJA Fundamental", "EJA Médio"]
+  },
+
   render: function(container) {
     const self = this;
-    
-    // Obter anos disponíveis para o select dinâmico
-    const anos = Array.from(new Set(CURRICULO_DATA.map(c => c.ano)));
-    const unidades = Array.from(new Set(CURRICULO_DATA.map(c => c.unidadeTematica)));
+    const unidades = Array.from(new Set(CURRICULO_DATA.map(c => c.unidadeTematica))).sort();
 
     container.innerHTML = `
       <div class="fade-in space-y-6">
@@ -23,10 +26,10 @@ const IntegracaoController = {
           <div>
             <div class="flex items-center gap-2 mb-1">
               <span class="text-2xl">🔗</span>
-              <h2 class="text-xl sm:text-2xl font-bold text-slate-800">Matriz de Integração Curricular</h2>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-800">Matriz de Integração Curricular Completa</h2>
             </div>
             <p class="text-xs sm:text-sm text-slate-500">
-              Articulação automatizada: Conteúdos de Matemática ↔ BNCC Computação ↔ Currículo de Pernambuco
+              Articulação integral: BNCC Matemática ↔ BNCC Computação (Resolução CNE/CP 1/2022) ↔ Currículo de PE
             </p>
           </div>
           <a href="#planejamento" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs sm:text-sm font-semibold shadow transition-colors">
@@ -34,21 +37,21 @@ const IntegracaoController = {
           </a>
         </div>
 
-        <!-- Filtros e Barra de Pesquisa -->
+        <!-- Filtros e Barra de Pesquisa com Cascata -->
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <!-- Busca Geral -->
-            <div class="lg:col-span-1">
-              <label class="block text-xs font-semibold text-slate-700 mb-1">🔍 Buscar por Termo ou Código</label>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">🔍 Busca por Conteúdo ou Código</label>
               <input type="text" id="integracao-search" placeholder="Ex: Probabilidade, EF06MA, Scratch..." 
                 value="${self.searchQuery}"
                 class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
-            <!-- Filtro por Etapa -->
+            <!-- Filtro 1: Etapa de Ensino -->
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Etapa de Ensino</label>
-              <select id="integracao-filtro-etapa" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Etapa de Ensino</label>
+              <select id="integracao-filtro-etapa" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                 <option value="todas" ${self.selectedEtapa === 'todas' ? 'selected' : ''}>Todas as Etapas</option>
                 <option value="Ensino Fundamental (Anos Finais)" ${self.selectedEtapa === 'Ensino Fundamental (Anos Finais)' ? 'selected' : ''}>Ensino Fundamental (6º ao 9º)</option>
                 <option value="Ensino Médio" ${self.selectedEtapa === 'Ensino Médio' ? 'selected' : ''}>Ensino Médio (1º ao 3º)</option>
@@ -56,19 +59,18 @@ const IntegracaoController = {
               </select>
             </div>
 
-            <!-- Filtro por Ano -->
+            <!-- Filtro 2: Ano Escolar (Dinâmico em cascata) -->
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Ano Escolar / Módulo</label>
-              <select id="integracao-filtro-ano" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Ano Escolar / Turma</label>
+              <select id="integracao-filtro-ano" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                 <option value="todos">Todos os Anos</option>
-                ${anos.map(a => `<option value="${a}" ${self.selectedAno === a ? 'selected' : ''}>${a}</option>`).join('')}
               </select>
             </div>
 
-            <!-- Filtro por Unidade Temática -->
+            <!-- Filtro 3: Unidade Temática -->
             <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Unidade Temática</label>
-              <select id="integracao-filtro-unidade" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Unidade Temática</label>
+              <select id="integracao-filtro-unidade" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                 <option value="todas">Todas as Unidades</option>
                 ${unidades.map(u => `<option value="${u}" ${self.selectedUnidade === u ? 'selected' : ''}>${u}</option>`).join('')}
               </select>
@@ -76,8 +78,8 @@ const IntegracaoController = {
           </div>
 
           <div class="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-100">
-            <span id="integracao-count">Carregando dados...</span>
-            <button id="integracao-reset-filters" class="text-blue-600 hover:text-blue-800 font-medium">Limpar Filtros</button>
+            <span id="integracao-count" class="font-medium">Carregando dados...</span>
+            <button id="integracao-reset-filters" class="text-blue-600 hover:text-blue-800 font-semibold">Limpar Filtros</button>
           </div>
         </div>
 
@@ -89,7 +91,31 @@ const IntegracaoController = {
     `;
 
     self.setupEvents(container);
+    self.updateAnoOptions(container);
     self.renderList(container);
+  },
+
+  updateAnoOptions: function(container) {
+    const self = this;
+    const anoSelect = container.querySelector('#integracao-filtro-ano');
+    if (!anoSelect) return;
+
+    anoSelect.innerHTML = '<option value="todos">Todos os Anos</option>';
+
+    let anosParaMostrar = [];
+    if (self.selectedEtapa === 'todas') {
+      anosParaMostrar = Array.from(new Set(CURRICULO_DATA.map(c => c.ano)));
+    } else if (self.ETAPAS_ANOS[self.selectedEtapa]) {
+      anosParaMostrar = self.ETAPAS_ANOS[self.selectedEtapa];
+    }
+
+    anosParaMostrar.forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a;
+      opt.textContent = a;
+      if (a === self.selectedAno) opt.selected = true;
+      anoSelect.appendChild(opt);
+    });
   },
 
   setupEvents: function(container) {
@@ -110,6 +136,8 @@ const IntegracaoController = {
     if (etapaSelect) {
       etapaSelect.addEventListener('change', function(e) {
         self.selectedEtapa = e.target.value;
+        self.selectedAno = 'todos';
+        self.updateAnoOptions(container);
         self.renderList(container);
       });
     }
@@ -136,8 +164,8 @@ const IntegracaoController = {
         self.searchQuery = '';
         searchInput.value = '';
         etapaSelect.value = 'todas';
-        anoSelect.value = 'todos';
         unidadeSelect.value = 'todas';
+        self.updateAnoOptions(container);
         self.renderList(container);
       });
     }
@@ -171,7 +199,7 @@ const IntegracaoController = {
     });
 
     if (countSpan) {
-      countSpan.textContent = `Exibindo ${filtered.length} de ${CURRICULO_DATA.length} articulações curriculares mapeadas`;
+      countSpan.textContent = `Exibindo ${filtered.length} de ${CURRICULO_DATA.length} habilidades e conteúdos integrados`;
     }
 
     if (filtered.length === 0) {
@@ -179,8 +207,8 @@ const IntegracaoController = {
         <div class="bg-white rounded-xl p-8 text-center border border-slate-200">
           <div class="text-3xl mb-2">🔎</div>
           <h4 class="font-bold text-slate-800 text-base mb-1">Nenhum resultado para os filtros atuais</h4>
-          <p class="text-xs sm:text-sm text-slate-500 mb-4">Tente buscar por termos mais amplos ou redefinir os seletores de ano e etapa.</p>
-          <button onclick="document.querySelector('#integracao-reset-filters').click()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">
+          <p class="text-xs sm:text-sm text-slate-500 mb-4">Tente buscar por termos mais amplos ou redefinir os filtros de Etapa e Ano.</p>
+          <button onclick="document.querySelector('#integracao-reset-filters').click()" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold">
             Redefinir Filtros
           </button>
         </div>
@@ -193,7 +221,7 @@ const IntegracaoController = {
         <!-- Barra Superior com Metadados -->
         <div class="bg-slate-50 px-5 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold">
+            <span class="px-2.5 py-1 bg-blue-100 text-blue-900 rounded-full text-xs font-bold">
               ${item.ano}
             </span>
             <span class="text-xs text-slate-500 font-medium">
@@ -206,7 +234,7 @@ const IntegracaoController = {
                 pilar === 'Algoritmos' ? 'badge-algoritmos' :
                 pilar === 'Abstração' ? 'badge-abstracao' :
                 pilar === 'Decomposição' ? 'badge-decomposicao' : 'badge-padroes'
-              }">${pilar}</span>
+              }">🧠 ${pilar}</span>
             `).join('')}
           </div>
         </div>
@@ -220,8 +248,8 @@ const IntegracaoController = {
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Coluna BNCC Matemática -->
-            <div class="bg-blue-50/50 rounded-xl p-4 border border-blue-100">
-              <div class="flex items-center justify-between mb-2">
+            <div class="bg-blue-50/50 rounded-xl p-4 border border-blue-200 space-y-1.5">
+              <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-blue-900 tracking-wide flex items-center gap-1">
                   <span>📐</span> BNCC MATEMÁTICA
                 </span>
@@ -235,8 +263,8 @@ const IntegracaoController = {
             </div>
 
             <!-- Coluna BNCC Computação -->
-            <div class="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100">
-              <div class="flex items-center justify-between mb-2">
+            <div class="bg-emerald-50/50 rounded-xl p-4 border border-emerald-200 space-y-1.5">
+              <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-emerald-900 tracking-wide flex items-center gap-1">
                   <span>💻</span> BNCC COMPUTAÇÃO
                 </span>
@@ -276,7 +304,7 @@ const IntegracaoController = {
               <a href="#praticas?q=${encodeURIComponent(item.conteudo)}" class="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
                 Ver Práticas
               </a>
-              <a href="#planejamento?habilidadeId=${item.id}" class="px-4 py-1.5 text-xs font-semibold text-white bg-blue-700 hover:bg-blue-800 rounded-lg shadow-sm transition-colors flex items-center gap-1.5">
+              <a href="#planejamento?habilidadeId=${item.id}" class="px-4 py-1.5 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 rounded-lg shadow-sm transition-colors flex items-center gap-1.5">
                 <span>➕</span> Iniciar Planejamento
               </a>
             </div>
