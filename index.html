@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CompMath — Plataforma Inteligente para Integração da BNCC Computação ao Ensino de Matemática</title>
+  <meta name="description" content="Plataforma de apoio pedagógico para professores de Matemática da Educação Básica (Anos Finais, Ensino Médio e EJA) integrarem a BNCC Computação e o Currículo de Pernambuco.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Estilos Customizados e Otimização para Impressão -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
+
+  <!-- Cabeçalho Principal e Barra de Navegação -->
+  <header class="no-print bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-950 text-white sticky top-0 z-40 shadow-md border-b border-blue-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo e Título -->
+        <a href="#dashboard" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-emerald-400 p-0.5 flex items-center justify-center shadow-md shadow-blue-900/40 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-blue-950 rounded-[10px] flex items-center justify-center font-black text-emerald-400 text-lg">
+              C<span class="text-blue-400">M</span>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-lg sm:text-xl tracking-tight text-white group-hover:text-blue-200 transition-colors">
+                Comp<span class="text-emerald-400">Math</span>
+              </span>
+              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                BNCC Computação
+              </span>
+            </div>
+            <p class="text-[11px] text-blue-200/80 hidden sm:block">
+              Integração Curricular com a Matemática • Currículo de PE
+            </p>
+          </div>
+        </a>
+
+        <!-- Links de Navegação Desktop -->
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="#dashboard" class="nav-link px-3 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all flex items-center gap-1.5">
+            <span>🏠</span> Dashboard
+          </a>
+          <a href="#integracao" class="nav-link px-3 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all flex items-center gap-1.5">
+            <span>🔗</span> Integração Curricular
+          </a>
+          <a href="#planejamento" class="nav-link px-3 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all flex items-center gap-1.5">
+            <span>📝</span> Planejamento
+          </a>
+          <a href="#praticas" class="nav-link px-3 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all flex items-center gap-1.5">
+            <span>💡</span> Banco de Práticas
+          </a>
+          <a href="#detalhes" class="nav-link px-3 py-2 rounded-lg text-xs font-semibold tracking-wide transition-all flex items-center gap-1.5">
+            <span>📋</span> Meus Planos
+          </a>
+        </nav>
+
+        <!-- Ação Rápida / Botão Sobre -->
+        <div class="hidden sm:flex items-center gap-3">
+          <button onclick="document.getElementById('sobre-modal').classList.remove('hidden')" class="px-3 py-1.5 text-xs text-blue-200 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-colors flex items-center gap-1">
+            <span>ℹ️</span> Sobre
+          </button>
+          <a href="#planejamento" class="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-xs font-bold shadow-md shadow-emerald-900/30 transition-all flex items-center gap-1.5">
+            <span>➕</span> Nova Aula
+          </a>
+        </div>
+
+        <!-- Botão Menu Mobile -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg text-blue-200 hover:text-white hover:bg-blue-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Menu Dropdown Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden bg-blue-950 border-b border-blue-800 px-4 pt-2 pb-4 space-y-1">
+      <a href="#dashboard" class="nav-link block px-3 py-2 rounded-lg text-xs font-semibold">🏠 Dashboard</a>
+      <a href="#integracao" class="nav-link block px-3 py-2 rounded-lg text-xs font-semibold">🔗 Integração Curricular</a>
+      <a href="#planejamento" class="nav-link block px-3 py-2 rounded-lg text-xs font-semibold">📝 Planejamento Pedagógico</a>
+      <a href="#praticas" class="nav-link block px-3 py-2 rounded-lg text-xs font-semibold">💡 Banco de Práticas</a>
+      <a href="#detalhes" class="nav-link block px-3 py-2 rounded-lg text-xs font-semibold">📋 Meus Planejamentos</a>
+      <div class="pt-2 border-t border-blue-900 flex justify-between">
+        <button onclick="document.getElementById('sobre-modal').classList.remove('hidden')" class="text-xs text-blue-300 py-1">
+          ℹ️ Sobre a Plataforma
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal das Telas da SPA -->
+  <main id="main-content" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    <!-- As telas serão renderizadas aqui dinamicamente pelos controllers -->
+    <div class="flex items-center justify-center py-20">
+      <div class="text-center space-y-3">
+        <div class="w-12 h-12 border-4 border-blue-700 border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <p class="text-sm font-semibold text-slate-600">Carregando CompMath...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Rodapé Institucional -->
+  <footer class="no-print bg-white border-t border-slate-200 mt-auto py-6 text-slate-600 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="space-y-1 text-center sm:text-left">
+        <p class="font-bold text-slate-800">
+          CompMath — Plataforma Inteligente para Integração da BNCC Computação ao Ensino de Matemática
+        </p>
+        <p class="text-slate-500">
+          Desenvolvido por <strong>Prof. Rodrygo Dyego da Silva Nascimento</strong> • Mestrado Profissional em Ensino de Computação (PROFCOMP/UFRPE)
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-3 text-slate-500">
+        <span class="px-2.5 py-1 bg-slate-100 rounded text-[11px] font-semibold">Resolução CNE/CP 01/2022</span>
+        <span class="px-2.5 py-1 bg-slate-100 rounded text-[11px] font-semibold">Currículo de Pernambuco</span>
+        <span class="px-2.5 py-1 bg-slate-100 rounded text-[11px] font-semibold">Educação Básica & EJA</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Container de Toasts -->
+  <div id="toast-container" class="no-print"></div>
+
+  <!-- Modal Sobre o CompMath -->
+  <div id="sobre-modal" class="no-print fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-900 text-emerald-400 flex items-center justify-center font-bold text-sm">
+            CM
+          </div>
+          <h3 class="font-bold text-slate-900 text-lg">Sobre a Plataforma CompMath</h3>
+        </div>
+        <button onclick="document.getElementById('sobre-modal').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 font-bold text-base">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed">
+        <p>
+          O <strong>CompMath</strong> foi concebido para solucionar uma dificuldade recorrente enfrentada pelos professores de Matemática na rede pública de ensino: a necessidade de integrar as habilidades curriculares de Matemática às diretrizes da <strong>BNCC Computação (Resolução CNE/CP nº 1/2022)</strong> e às orientações do <strong>Currículo de Pernambuco</strong>.
+        </p>
+        <p>
+          Hoje, esse processo costuma exigir consultas manuais a múltiplos documentos oficiais dispersos. O CompMath automatiza esse cruzamento curricular e oferece um assistente intuitivo de planejamento com sugestões de estratégias metodológicas e um banco de práticas plugadas (Scratch, Python, GeoGebra, Planilhas) e desplugadas (jogos, raciocínio lógico no papel e corpo em movimento).
+        </p>
+        
+        <div class="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100 space-y-1 text-xs">
+          <p class="font-bold text-blue-950">Os 4 Pilares do Pensamento Computacional contemplados:</p>
+          <ul class="list-disc pl-5 space-y-0.5 text-slate-700">
+            <li><strong>Algoritmos:</strong> Sequência ordenada de instruções lógicas e condicionais.</li>
+            <li><strong>Abstração:</strong> Filtragem de detalhes irrelevantes e modelagem conceitual.</li>
+            <li><strong>Decomposição:</strong> Fracionamento de problemas complexos em partes menores.</li>
+            <li><strong>Reconhecimento de Padrões:</strong> Identificação de regularidades e generalizações.</li>
+          </ul>
+        </div>
+
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600">
+          <p><strong>Autoria e Pesquisa:</strong> Rodrygo Dyego da Silva Nascimento</p>
+          <p>Professor Efetivo de Matemática (Rede Estadual de PE / Município de Igarassu)</p>
+          <p>Mestrando no PROFCOMP/UFRPE (Universidade Federal Rural de Pernambuco)</p>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 text-right">
+        <button onclick="document.getElementById('sobre-modal').classList.add('hidden')" class="px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold">
+          Entendi
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carregamento Ordenado dos Scripts da Aplicação -->
+  <script src="js/data/curriculoData.js"></script>
+  <script src="js/data/praticasData.js"></script>
+  <script src="js/database/db.js"></script>
+  <script src="js/controllers/dashboard.js"></script>
+  <script src="js/controllers/integracao.js"></script>
+  <script src="js/controllers/planejamento.js"></script>
+  <script src="js/controllers/praticas.js"></script>
+  <script src="js/controllers/detalhes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
