@@ -1,5 +1,5 @@
-// Banco de Práticas Pedagógicas Plugadas e Desplugadas - CompMath
-// Atividades detalhadas com roteiro didático, objetivos, materiais e rubricas
+// Banco de Práticas Pedagógicas - CompMath v2.4
+// Atividades com os 3 Eixos da BNCC Computação e Links de Tutoriais no YouTube
 
 const PRATICAS_DATA = [
   {
@@ -27,7 +27,16 @@ const PRATICAS_DATA = [
       "5. Fechamento e Sistematização (15 min): Conectar a estratégia dos alunos com os algoritmos de busca utilizados por mecanismos computacionais e jogos."
     ],
     "dicasProfessor": "Ressaltar aos alunos o erro comum de inverter o eixo horizontal com o vertical: enfatizar que o primeiro número sempre corre no chão (X) e o segundo sobe no elevador (Y). Para turmas com alunos de baixa visão, utilizar tabuleiros em relevo ou com tampinhas de garrafa.",
-    "rubricaAvaliacao": "Excelente: Identifica e plota sem erros os pares ordenados e expressa claramente a lógica algorítmica adotada. Bom: Plota coordenadas com poucos auxílios e compreende o eixo X e Y. Em desenvolvimento: Troca recorrentemente a ordem dos eixos."
+    "rubricaAvaliacao": "Excelente: Identifica e plota sem erros os pares ordenados e expressa claramente a lógica algorítmica adotada. Bom: Plota coordenadas com poucos auxílios e compreende o eixo X e Y. Em desenvolvimento: Troca recorrentemente a ordem dos eixos.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Pensamento Computacional e Atividades Desplugadas",
+      "canal": "Aprendiz 21",
+      "url": "https://www.youtube.com/watch?v=mC_XR2ofn3o"
+    }
   },
   {
     "id": "PRAT-02",
@@ -54,7 +63,15 @@ const PRATICAS_DATA = [
       "5. Conclusão (15 min): Discutir por que o computador prefere esse método à fatoração prima simultânea (complexidade muito menor)."
     ],
     "dicasProfessor": "Essa prática ilustra perfeitamente como um algoritmo concebido há mais de 2.300 anos continua sendo o mais eficiente para criptografia moderna em sistemas bancários.",
-    "rubricaAvaliacao": "Excelente: Conclui a sobreposição física e traduz as operações em etapas de repetição condicional sem falhas. Bom: Realiza a parte física e calcula o MDC, com suporte na formalização do fluxograma."
+    "rubricaAvaliacao": "Excelente: Conclui a sobreposição física e traduz as operações em etapas de repetição condicional sem falhas. Bom: Realiza a parte física e calcula o MDC, com suporte na formalização do fluxograma.",
+    "eixos": [
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Algoritmo de Euclides para MDC no papel",
+      "canal": "Professor Damaceno",
+      "url": "https://www.youtube.com/watch?v=aAGTcZshyrE"
+    }
   },
   {
     "id": "PRAT-03",
@@ -80,7 +97,15 @@ const PRATICAS_DATA = [
       "4. Debate de Fechamento (10 min): O que aconteceu quando uma instrução era ambígua? Como a precisão da linguagem matemática evita falhas de execução?"
     ],
     "dicasProfessor": "Excelente para introduzir o rigor da escrita matemática e preparar a turma para programação em Scratch ou Python. Ótimo também para descontrair turmas de EJA e criar vínculos.",
-    "rubricaAvaliacao": "Excelente: Formula sequências lógicas precisas e depura instruções ambíguas. Bom: Compreende os condicionais SE/SENÃO e conduz o robô ao objetivo."
+    "rubricaAvaliacao": "Excelente: Formula sequências lógicas precisas e depura instruções ambíguas. Bom: Compreende os condicionais SE/SENÃO e conduz o robô ao objetivo.",
+    "eixos": [
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Pensamento Computacional e Programação Desplugada",
+      "canal": "Matemática é Vida",
+      "url": "https://www.youtube.com/watch?v=6L6aMJhJAiQ"
+    }
   },
   {
     "id": "PRAT-04",
@@ -107,7 +132,17 @@ const PRATICAS_DATA = [
       "5. Conexão Curricular (15 min): Demonstrar a fórmula matemática no quadro e como o computador executa o operador módulo (%) instantaneamente."
     ],
     "dicasProfessor": "Vincular a discussão ao perigo de usar senhas fracas ou curtas e a importância da criptografia de chave pública (RSA) que usa números primos gigantescos.",
-    "rubricaAvaliacao": "Excelente: Aplica com autonomia a aritmética modular nas duas direções e compreende a lógica de segurança da informação. Bom: Consegue cifrar e decifrar usando a roda giratória."
+    "rubricaAvaliacao": "Excelente: Aplica com autonomia a aritmética modular nas duas direções e compreende a lógica de segurança da informação. Bom: Consegue cifrar e decifrar usando a roda giratória.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional",
+      "Cultura Digital"
+    ],
+    "videoYoutube": {
+      "titulo": "Como Criptografar Mensagens com a Cifra de César",
+      "canal": "TIChers",
+      "url": "https://www.youtube.com/watch?v=KHryRU9vlkI"
+    }
   },
   {
     "id": "PRAT-05",
@@ -134,7 +169,15 @@ const PRATICAS_DATA = [
       "5. Fechamento (10 min): Conexão com funções exponenciais do ENEM e conceitos de recursão em ciência da computação."
     ],
     "dicasProfessor": "Excelente gancho para explicar por que problemas exponenciais se tornam intratáveis para computadores quando o tamanho N cresce além de certo limite.",
-    "rubricaAvaliacao": "Excelente: Tabela dados, identifica o padrão 2^n - 1 e explica verbalmente a chamada recursiva. Bom: Resolve a torre até 4 discos e preenche a tabela com auxílio."
+    "rubricaAvaliacao": "Excelente: Tabela dados, identifica o padrão 2^n - 1 e explica verbalmente a chamada recursiva. Bom: Resolve a torre até 4 discos e preenche a tabela com auxílio.",
+    "eixos": [
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Torre de Hanói - Regras e Fórmula Exponencial",
+      "canal": "Professor Douglas Maioli",
+      "url": "https://www.youtube.com/watch?v=Q2BooYpqS6g"
+    }
   },
   {
     "id": "PRAT-06",
@@ -161,7 +204,15 @@ const PRATICAS_DATA = [
       "5. Sistematização (15 min): Regra de ouro da probabilidade: 'Multiplica nos galhos (E) e soma nas folhas (OU)'."
     ],
     "dicasProfessor": "Utilizar a analogia direta com as lousas práticas de probabilidade: a árvore substitui a contagem desorganizada por um método visual estruturado à prova de erros.",
-    "rubricaAvaliacao": "Excelente: Desenha a árvore completa, calcula as probabilidades parciais e totais e relaciona com árvores de decisão. Bom: Monta a árvore e conta os casos favoráveis."
+    "rubricaAvaliacao": "Excelente: Desenha a árvore completa, calcula as probabilidades parciais e totais e relaciona com árvores de decisão. Bom: Monta a árvore e conta os casos favoráveis.",
+    "eixos": [
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Probabilidade: Diagrama de Árvore e Princípio Multiplicativo",
+      "canal": "Gis com Giz Matemática",
+      "url": "https://www.youtube.com/watch?v=MK4cSSdNTHo"
+    }
   },
   {
     "id": "PRAT-07",
@@ -187,7 +238,15 @@ const PRATICAS_DATA = [
       "4. Engenharia Reversa (10 min): Alunos recebem uma peça pronta e devem escrever o pseudocódigo com os passos para recriá-la."
     ],
     "dicasProfessor": "Ótima atividade para trabalhar motricidade fina, concentração e tolerância a frustração, enfatizando que depurar erros de dobra faz parte do aprendizado.",
-    "rubricaAvaliacao": "Excelente: Executa e redige instruções com vocabulário geométrico adequado e sequência lógica impecável. Bom: Conclui a peça e reconhece as figuras geométricas formadas."
+    "rubricaAvaliacao": "Excelente: Executa e redige instruções com vocabulário geométrico adequado e sequência lógica impecável. Bom: Conclui a peça e reconhece as figuras geométricas formadas.",
+    "eixos": [
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Origami e Geometria: Ângulos, Polígonos e Algoritmos",
+      "canal": "Aprendiz 21",
+      "url": "https://www.youtube.com/watch?v=mC_XR2ofn3o"
+    }
   },
   {
     "id": "PRAT-08",
@@ -214,7 +273,15 @@ const PRATICAS_DATA = [
       "5. Conexão com a Computação (10 min): Mostrar como supercomputadores realizam essa mesma simulação com bilhões de iterações em segundos para previsão do tempo e física quântica."
     ],
     "dicasProfessor": "Garante um momento de encantamento na turma: os estudantes percebem que o valor de Pi pode ser 'descoberto' por meio de pura probabilidade física.",
-    "rubricaAvaliacao": "Excelente: Realiza a contagem com rigor, calcula a aproximação e compreende a justificativa algébrica da razão π/4. Bom: Executa o experimento e compreende o princípio geral."
+    "rubricaAvaliacao": "Excelente: Realiza a contagem com rigor, calcula a aproximação e compreende a justificativa algébrica da razão π/4. Bom: Executa o experimento e compreende o princípio geral.",
+    "eixos": [
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "O Método de Monte Carlo e a Estimativa de Pi",
+      "canal": "Manual do Mundo",
+      "url": "https://www.youtube.com/watch?v=aTI99jztZds"
+    }
   },
   {
     "id": "PRAT-09",
@@ -241,7 +308,16 @@ const PRATICAS_DATA = [
       "5. Discussão Pedagógica (10 min): Como o computador nos permite investigar hipóteses estatísticas impossíveis de testar manualmente no tempo de uma aula."
     ],
     "dicasProfessor": "Perfeito para aprofundar o planejamento de 12 aulas de Probabilidade do 3º ano EM: os alunos veem na prática o conceito de convergência assintótica sem precisar de limites formais.",
-    "rubricaAvaliacao": "Excelente: Monta o código funcional com laços e condicionais e explica a convergência da frequência empírica para a teórica. Bom: Constrói o programa com pequenos apoios sintáticos."
+    "rubricaAvaliacao": "Excelente: Monta o código funcional com laços e condicionais e explica a convergência da frequência empírica para a teórica. Bom: Constrói o programa com pequenos apoios sintáticos.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Simulando 1000 lançamentos de moeda e dado no Scratch",
+      "canal": "Antonio Prado - Matemática",
+      "url": "https://www.youtube.com/watch?v=wnDxzQ0POQA"
+    }
   },
   {
     "id": "PRAT-10",
@@ -268,7 +344,16 @@ const PRATICAS_DATA = [
       "5. Exposição e Reflexão (10 min): Conexão entre matemática, computação e estética artística."
     ],
     "dicasProfessor": "Resgate histórico riquíssimo: essa prática descende diretamente do trabalho seminal de Seymour Papert no MIT com a linguagem Logo e o Construcionismo.",
-    "rubricaAvaliacao": "Excelente: Compreende e generaliza a fórmula 360°/n e aninha laços de repetição com criatividade estética. Bom: Desenha quadrados e triângulos com suporte."
+    "rubricaAvaliacao": "Excelente: Compreende e generaliza a fórmula 360°/n e aninha laços de repetição com criatividade estética. Bom: Desenha quadrados e triângulos com suporte.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Desenhando polígonos regulares com o Scratch (Módulo Caneta)",
+      "canal": "Rodrigo Terra",
+      "url": "https://www.youtube.com/watch?v=aWhlFz6KnGo"
+    }
   },
   {
     "id": "PRAT-11",
@@ -295,7 +380,16 @@ const PRATICAS_DATA = [
       "5. Sistematização Coletiva (10 min): O professor resume as conclusões no quadro, formalizando os teoremas matemáticos a partir das descobertas dos alunos."
     ],
     "dicasProfessor": "Excelente para desmistificar o coeficiente linear 'b' (ponto de corte do eixo Y) e o angular 'a' (taxa de variação/inclinação). O GeoGebra roda perfeitamente em qualquer smartphone.",
-    "rubricaAvaliacao": "Excelente: Registra conclusões analíticas precisas correlacionando os valores dos parâmetros à morfologia do gráfico. Bom: Manipula o software e identifica inclinações positivas e negativas."
+    "rubricaAvaliacao": "Excelente: Registra conclusões analíticas precisas correlacionando os valores dos parâmetros à morfologia do gráfico. Bom: Manipula o software e identifica inclinações positivas e negativas.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Função afim e quadrática com controle deslizante no GeoGebra",
+      "canal": "Desvendando a Matemática",
+      "url": "https://www.youtube.com/watch?v=5bFynULxHS8"
+    }
   },
   {
     "id": "PRAT-12",
@@ -322,7 +416,17 @@ const PRATICAS_DATA = [
       "5. Apresentação das Conclusões (10 min): Cada grupo compartilha um insight descoberto sobre os hábitos da turma."
     ],
     "dicasProfessor": "Para turmas de EJA, contextualizar com controle de orçamento doméstico ou horas trabalhadas/banco de horas. É uma das habilidades mais diretamente exigidas no mercado de trabalho atual.",
-    "rubricaAvaliacao": "Excelente: Digita fórmulas sem erros de sintaxe, interpreta a discrepância entre média e mediana e escolhe gráficos coerentes. Bom: Utiliza as funções com orientação e gera gráficos."
+    "rubricaAvaliacao": "Excelente: Digita fórmulas sem erros de sintaxe, interpreta a discrepância entre média e mediana e escolhe gráficos coerentes. Bom: Utiliza as funções com orientação e gera gráficos.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional",
+      "Cultura Digital"
+    ],
+    "videoYoutube": {
+      "titulo": "Google Planilhas: Fórmulas de Média, Mediana e Gráficos",
+      "canal": "Rodrigo Baez",
+      "url": "https://www.youtube.com/watch?v=Ome4ZGlYta0"
+    }
   },
   {
     "id": "PRAT-13",
@@ -349,7 +453,16 @@ const PRATICAS_DATA = [
       "5. Reflexão (10 min): Discutir o que é um 'bug' e como a máquina exige que o matemático antecipe todos os casos possíveis."
     ],
     "dicasProfessor": "Para turmas iniciantes que nunca viram código textual, o professor pode fornecer o esqueleto com lacunas para os estudantes preencherem apenas as expressões matemáticas.",
-    "rubricaAvaliacao": "Excelente: Programa executa sem erros de sintaxe, trata adequadamente os três casos de Delta e verifica se a ≠ 0. Bom: Constrói a lógica com assistência na sintaxe."
+    "rubricaAvaliacao": "Excelente: Programa executa sem erros de sintaxe, trata adequadamente os três casos de Delta e verifica se a ≠ 0. Bom: Constrói a lógica com assistência na sintaxe.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Equação do 2º Grau em Python Passo a Passo",
+      "canal": "Programe Seu Futuro",
+      "url": "https://www.youtube.com/watch?v=JuwpGiRImtc"
+    }
   },
   {
     "id": "PRAT-14",
@@ -376,7 +489,17 @@ const PRATICAS_DATA = [
       "5. Conclusão Pedagógica (10 min): Como o Pensamento Computacional e a Matemática protegem o cidadão do superendividamento."
     ],
     "dicasProfessor": "Um dos temas de maior impacto social para os estudantes da rede pública e EJA, aliando rigor matemático ao empoderamento financeiro das famílias.",
-    "rubricaAvaliacao": "Excelente: Constrói a rotina iterativa de juros compostos e interpreta criticamente o perigo do efeito 'bola de neve' das taxas. Bom: Entende a mecânica do simulador e calcula montantes."
+    "rubricaAvaliacao": "Excelente: Constrói a rotina iterativa de juros compostos e interpreta criticamente o perigo do efeito 'bola de neve' das taxas. Bom: Entende a mecânica do simulador e calcula montantes.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional",
+      "Cultura Digital"
+    ],
+    "videoYoutube": {
+      "titulo": "Matemática Financeira e Juros no Excel e Planilhas",
+      "canal": "Rodrigo Baez",
+      "url": "https://www.youtube.com/watch?v=Ome4ZGlYta0"
+    }
   },
   {
     "id": "PRAT-15",
@@ -403,7 +526,197 @@ const PRATICAS_DATA = [
       "5. Fechamento (10 min): Sistematização de como os sistemas de visão computacional e inteligência artificial classificam formas geométricas no mundo real."
     ],
     "dicasProfessor": "Excelente para demonstrar aos alunos a importância de testar primeiro se o triângulo existe antes de tentar classificá-lo, evitando o clássico bug de classificar medidas impossíveis.",
-    "rubricaAvaliacao": "Excelente: Implementa a condição de existência com operadores booleanos corretos e ramifica perfeitamente os três tipos de triângulos. Bom: Classifica os lados com apoio no condicional de existência."
+    "rubricaAvaliacao": "Excelente: Implementa a condição de existência com operadores booleanos corretos e ramifica perfeitamente os três tipos de triângulos. Bom: Classifica os lados com apoio no condicional de existência.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "videoYoutube": {
+      "titulo": "Condição de Existência de Triângulos e Scratch",
+      "canal": "Edu Scratch",
+      "url": "https://www.youtube.com/watch?v=9a20fX8bgKE"
+    }
+  },
+  {
+    "id": "PRAT-16",
+    "titulo": "Detetive de Fake News Estatísticas e Gráficos Manipulados",
+    "tipo": "Plugada",
+    "etapa": "Ensino Fundamental, Ensino Médio e EJA",
+    "ano": "8º Ano, 9º Ano, Ensino Médio e EJA",
+    "conteudoMatematico": "Leitura Crítica de Gráficos, Escalas Truncadas, Proporções e Médias",
+    "pilarPrincipal": "Abstração",
+    "pilares": [
+      "Abstração",
+      "Reconhecimento de Padrões"
+    ],
+    "eixos": [
+      "Cultura Digital",
+      "Mundo Digital"
+    ],
+    "tempoEstimado": "2 aulas (100 min)",
+    "materiais": "Projetor ou computadores com acesso a notícias reais e planilhas eletrônicas (Google Planilhas).",
+    "objetivo": "Identificar distorções intencionais e involuntárias em gráficos divulgados na internet e televisão (eixo Y sem começar do zero, tamanhos desproporcionais de figuras 3D) e reconstruir o gráfico correto para tomada de decisão cidadã.",
+    "resumo": "Os estudantes atuam como 'Checadores de Fatos Matemáticos': analisam capturas de tela de jornais e redes sociais com gráficos enganosos, tabulam os números brutos em uma planilha e geram o gráfico correto, comparando a impressão visual.",
+    "passoAPasso": [
+      "1. Sensibilização (15 min): Apresentar um caso real de telejornal com gráfico de barras onde uma diferença de 2% parece ter o dobro do tamanho (efeito do eixo truncado).",
+      "2. O Conceito de Desinformação Estatística (20 min): Discutir a Cultura Digital: como gráficos compartilhados no WhatsApp e TikTok influenciam eleições, consumo e decisões de saúde.",
+      "3. Oficina Prática em Duplas (40 min): Cada dupla recebe uma manchete com gráfico duvidoso. Eles digitam os dados no Google Planilhas e geram um gráfico padronizado com escala honesta.",
+      "4. Painel de Exposição (15 min): As duplas mostram o 'Antes e Depois' e apontam qual técnica de distorção foi utilizada.",
+      "5. Síntese e Cidadania (10 min): Elaboração coletiva de um guia de 3 regras para não cair em fake news numéricas."
+    ],
+    "dicasProfessor": "Atividade excelente para turmas de EJA e Ensino Médio. Estimula o senso crítico contra golpes, pirâmides financeiras e desinformação eleitoral.",
+    "rubricaAvaliacao": "Excelente: Identifica com precisão a falha metodológica na representação e reconstrói o gráfico com escala adequada. Bom: Percebe a distorção visual com auxílio do professor.",
+    "videoYoutube": {
+      "titulo": "MENSAGEM SECRETA: Entenda a CRIPTOGRAFIA e Cidadania na Rede",
+      "canal": "Manual do Mundo",
+      "url": "https://www.youtube.com/watch?v=aTI99jztZds"
+    }
+  },
+  {
+    "id": "PRAT-17",
+    "titulo": "Engenharia de Senhas Seguras e Ataques de Força Bruta",
+    "tipo": "Plugada",
+    "etapa": "Ensino Fundamental e Ensino Médio",
+    "ano": "7º Ano, 8º Ano e 2º Ano EM",
+    "conteudoMatematico": "Princípio Fundamental da Contagem, Potenciação e Análise Combinatória",
+    "pilarPrincipal": "Decomposição",
+    "pilares": [
+      "Decomposição",
+      "Algoritmos",
+      "Abstração"
+    ],
+    "eixos": [
+      "Cultura Digital",
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "tempoEstimado": "2 aulas (100 min)",
+    "materiais": "Computadores ou smartphones com simulador de tempo de quebra de senhas (ex: How Secure is My Password / security.org) e papel.",
+    "objetivo": "Calcular matematicamente o número de combinações possíveis para senhas de diferentes comprimentos e conjuntos de caracteres (apenas números vs letras vs símbolos) e compreender o tempo de quebra por computadores modernos.",
+    "resumo": "A turma aplica o Princípio Multiplicativo: senha de 4 dígitos numéricos = 10^4 = 10.000 opções (quebrada em milissegundos). Senha de 8 caracteres com letras maiúsculas, minúsculas, números e símbolos = 94^8 ≈ 6 quatrilhões de opções (leva centenas de anos).",
+    "passoAPasso": [
+      "1. Abertura e Sensibilização (15 min): Qual foi a senha mais usada no Brasil no último ano? (123456). Por que isso é um risco para contas bancárias e redes sociais?",
+      "2. Cálculo Combinatório no Quadro (25 min): Deduzir o total de possibilidades: N = (tamanho do alfabeto)^(comprimento da senha). Mostrar o crescimento exponencial.",
+      "3. Teste em Simulador Digital (30 min): Alunos testam senhas hipotéticas no simulador e observam a mudança do tempo de quebra ao adicionar um único caractere especial.",
+      "4. Prática de Criação Segura (20 min): Criar senhas mnemônicas baseadas em frases fáceis de lembrar para os alunos e quase impossíveis para máquinas.",
+      "5. Reflexão sobre Cultura Digital (10 min): A responsabilidade individual na proteção de dados e privacidade pessoal (LGPD)."
+    ],
+    "dicasProfessor": "Alertar os estudantes para nunca digitarem suas senhas reais no simulador, criando apenas senhas fictícias para teste durante a aula.",
+    "rubricaAvaliacao": "Excelente: Demonstra matematicamente o crescimento exponencial do espaço de busca e formula senhas robustas. Bom: Compreende o cálculo combinatório básico.",
+    "videoYoutube": {
+      "titulo": "Como funcionam as senhas e a segurança digital",
+      "canal": "Manual do Mundo",
+      "url": "https://www.youtube.com/watch?v=aTI99jztZds"
+    }
+  },
+  {
+    "id": "PRAT-18",
+    "titulo": "Decodificando Imagens Digitais: Pixels, Cores RGB e Matrizes",
+    "tipo": "Plugada",
+    "etapa": "Ensino Fundamental e Ensino Médio",
+    "ano": "8º Ano e 2º Ano EM",
+    "conteudoMatematico": "Matrizes Bidimensionais, Coordenadas, Escala de Cinza e RGB",
+    "pilarPrincipal": "Abstração",
+    "pilares": [
+      "Abstração",
+      "Decomposição",
+      "Algoritmos"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "tempoEstimado": "2 aulas (100 min)",
+    "materiais": "Folhas de malha quadriculada 8x8 numeradas de 0 a 9 e computadores com editor simples de imagem ou Scratch.",
+    "objetivo": "Compreender que qualquer imagem na tela do celular é uma matriz de números (pixels com intensidades de 0 a 255 nas cores Vermelho, Verde e Azul).",
+    "resumo": "Os estudantes iniciam colorindo uma matriz no papel através de uma tabela numérica e depois criam um gerador de arte pixelada ou filtro de contraste simples.",
+    "passoAPasso": [
+      "1. O que é um Pixel? (15 min): Usar uma lupa em uma tela ou dar zoom máximo em uma foto para ver os quadradinhos elementares.",
+      "2. Atividade Desplugada de Transmissão de Imagem (30 min): O aluno 'transmissor' dita uma matriz numérica de 8 linhas e 8 colunas; o 'receptor' pinta as células e descobre o desenho.",
+      "3. O Modelo RGB no Computador (25 min): Como a mistura aditiva de luz (R, G, B de 0 a 255) forma o amarelo, roxo e branco.",
+      "4. Manipulação de Filtros (20 min): O que acontece quando somamos 50 a todos os elementos da matriz? A imagem fica mais clara (brilho)! E quando subtraímos da cor máxima 255 - pixel? Criamos o negativo da imagem!",
+      "5. Conexão com IA e Visão Computacional (10 min): Como os carros autônomos e o reconhecimento facial leem essas matrizes para enxergar o mundo."
+    ],
+    "dicasProfessor": "Excelente ponte para introduzir o estudo de Matrizes no 2º ano do Ensino Médio de forma contextualizada, eliminando a visão de que matrizes servem apenas para cálculos mecânicos.",
+    "rubricaAvaliacao": "Excelente: Articula a álgebra matricial com a formação de imagens digitais e manipula os canais de cores. Bom: Decodifica e preenche a matriz corretamente.",
+    "videoYoutube": {
+      "titulo": "Como funcionam os pixels e as telas dos celulares",
+      "canal": "Manual do Mundo",
+      "url": "https://www.youtube.com/watch?v=aTI99jztZds"
+    }
+  },
+  {
+    "id": "PRAT-19",
+    "titulo": "Roteamento em Redes e o Algoritmo do Caminho Mais Curto",
+    "tipo": "Desplugada",
+    "etapa": "Ensino Fundamental, Ensino Médio e EJA",
+    "ano": "9º Ano, Ensino Médio e EJA",
+    "conteudoMatematico": "Grafos Ponderados, Geometria de Posição, Distâncias e Otimização",
+    "pilarPrincipal": "Algoritmos",
+    "pilares": [
+      "Algoritmos",
+      "Decomposição",
+      "Reconhecimento de Padrões"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "tempoEstimado": "2 aulas (100 min)",
+    "materiais": "Mapas simplificados de bairros/cidades com nós (roteadores/escolas) e arestas com valores de distância em km ou tempo em minutos.",
+    "objetivo": "Compreender como a internet envia pacotes de dados de um computador ao outro e como aplicativos de mapa (Waze/Google Maps) calculam a rota mais rápida usando o Algoritmo de Dijkstra.",
+    "resumo": "Estudantes recebem uma rede de nós conectados e precisam encontrar o caminho de menor custo total sem testar todas as infinitas combinações possíveis de forma desordenada.",
+    "passoAPasso": [
+      "1. Problematização Cotidiana (15 min): Como uma mensagem de WhatsApp sai de Recife e chega em Petrolina em milissegundos sem se perder?",
+      "2. O Conceito de Grafo (20 min): Apresentar nós (roteadores/cidades) e arestas (cabos de fibra óptica/ruas) com pesos (latência/distância).",
+      "3. Aplicação do Algoritmo Passo a Passo (35 min): Partindo da origem, os alunos avaliam em cada etapa o nó vizinho não visitado com menor custo acumulado.",
+      "4. Simulação de Congestionamento (20 min): Um cabo submarino é rompido (aresta bloqueada) — como o algoritmo recalcula a rota imediatamente?",
+      "5. Conexão com Logística e Mundo do Trabalho (10 min): Como empresas de logística (Correios, Mercado Livre) usam esse mesmo algoritmo para economizar milhões em combustível."
+    ],
+    "dicasProfessor": "Atividade riquíssima para turmas de EJA, articulando planejamento de trajetos urbanos ao funcionamento invisível da internet.",
+    "rubricaAvaliacao": "Excelente: Executa o algoritmo de busca com rigor, encontra o caminho ótimo e explica a lógica de atualização de nós. Bom: Encontra o caminho mais curto por inspeção guiada.",
+    "videoYoutube": {
+      "titulo": "💻 BNCC COMPUTAÇÃO | O Que Muda na Escola e na Sala de Aula?",
+      "canal": "Prof. Eldo",
+      "url": "https://www.youtube.com/watch?v=PBPowAUwKXw"
+    }
+  },
+  {
+    "id": "PRAT-20",
+    "titulo": "Inteligência Artificial, Algoritmos de Recomendação e Viés Probabilístico",
+    "tipo": "Plugada",
+    "etapa": "Ensino Médio e EJA",
+    "ano": "2º Ano EM, 3º Ano EM e EJA Médio",
+    "conteudoMatematico": "Probabilidade Condicional, Estatística, Amostragem e Frequência",
+    "pilarPrincipal": "Reconhecimento de Padrões",
+    "pilares": [
+      "Reconhecimento de Padrões",
+      "Abstração",
+      "Decomposição"
+    ],
+    "eixos": [
+      "Cultura Digital",
+      "Pensamento Computacional",
+      "Mundo Digital"
+    ],
+    "tempoEstimado": "2 aulas (100 min)",
+    "materiais": "Computadores ou smartphones com acesso a plataformas de vídeo ou redes sociais.",
+    "objetivo": "Compreender como os algoritmos de recomendação (YouTube, Instagram, TikTok) utilizam dados de navegação e matrizes de probabilidade para sugerir o próximo vídeo, e refletir criticamente sobre as 'bolhas sociais' e vícios de atenção.",
+    "resumo": "A turma simula a criação de um 'Mini-Algoritmo de Recomendação' baseado em probabilidade conjunta: se um usuário assistiu ao vídeo de funk/brega, qual a probabilidade condicional de ele querer ver outro vídeo do mesmo gênero?",
+    "passoAPasso": [
+      "1. Provocação Inicial (15 min): Por que a página 'Para Você' do seu amigo mostra vídeos completamente diferentes da sua?",
+      "2. O Cálculo Probabilístico por Trás do Feed (30 min): Montar tabela no quadro relacionando tempo de visualização (segundos) e engajamento com probabilidades condicionais P(Vídeo B | assistiu Vídeo A).",
+      "3. O Experimento das Contas Novas (25 min): Grupos criam dois perfis de teste e dão 10 curtidas em temas diferentes (ex: futebol vs receitas). Observar como o feed se molda quase instantaneamente.",
+      "4. Debate sobre Cultura Digital e Saúde Mental (20 min): Como o design dos algoritmos estimula o tempo de tela excessivo e como podemos ter uma relação mais saudável e consciente com as telas.",
+      "5. Fechamento Crítico (10 min): Proposta de estratégias de 'higiene digital' pessoal."
+    ],
+    "dicasProfessor": "Um dos temas de maior adesão entre os jovens do Ensino Médio, aliando a matemática dos algoritmos com a vida real dos estudantes.",
+    "rubricaAvaliacao": "Excelente: Compreende a modelagem probabilística subjacente e desenvolve reflexão crítica consistente sobre os impactos das bolhas algorítmicas. Bom: Participa do debate e compreende o funcionamento básico das recomendações.",
+    "videoYoutube": {
+      "titulo": "BNCC COMPUTAÇÃO e Inteligência Artificial na Educação",
+      "canal": "Prof. Eldo",
+      "url": "https://www.youtube.com/watch?v=PBPowAUwKXw"
+    }
   }
 ];
 

@@ -193,3 +193,22 @@ body {
     color: #000000 !important;
   }
 }
+
+/* Badges dos 3 Eixos da BNCC Computação (Resolução CNE/CP nº 1/2022) */
+.badge-eixo-pc {
+  background-color: #e0e7ff;
+  color: #3730a3;
+  border: 1px solid #c7d2fe;
+}
+
+.badge-eixo-md {
+  background-color: #cffafe;
+  color: #0e7490;
+  border: 1px solid #a5f3fc;
+}
+
+.badge-eixo-cd {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}

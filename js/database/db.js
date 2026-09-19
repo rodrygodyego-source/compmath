@@ -1,105 +1,97 @@
 /**
- * CompMath Database & Storage Service
- * Gerencia o armazenamento local (LocalStorage), dados iniciais de demonstração (seeds),
- * importação/exportação de backups e consultas para a aplicação.
+ * CompMath Database & Storage Service (v2.3)
+ * Suporte a múltiplos professores, escolas, 3 Eixos da BNCC Computação e 4 Pilares do PC.
  */
 
 const CompMathDB = (function() {
-  const STORAGE_KEY = 'compmath_planejamentos_v2';
-  const SETTINGS_KEY = 'compmath_settings_v2';
+  const STORAGE_KEY = 'compmath_planejamentos_v3';
+  const PROFILE_KEY = 'compmath_teacher_profile_v3';
 
-  // Planejamentos padrão para o professor nunca abrir a plataforma vazia
+  // Planejamentos padrão com cabeçalho docente completo
   const DEFAULT_PLANEJAMENTOS = [
     {
       id: "PLAN-2026-001",
+      nomeProfessor: "Prof. Rodrygo Dyego da Silva Nascimento",
+      escola: "Escola de Referência em Ensino Médio (EREM) - Rede Estadual de PE",
+      etapa: "Ensino Médio",
       ano: "3º Ano EM",
-      turma: "3º Ano A - Ensino Médio Integral",
+      turma: "3º Ano A - Matutino",
+      turno: "Matutino",
       conteudo: "Probabilidade Clássica, Regra do Produto e Eventos Independentes",
       habilidadeMatematicaCodigo: "EM13MAT311",
       habilidadeMatematicaDescricao: "Identificar e calcular a probabilidade de eventos aleatórios simples e compostos (união, interseção e eventos complementares), aplicando o princípio aditivo e multiplicativo.",
       habilidadeComputacaoCodigo: "EM13CO01",
       habilidadeComputacaoDescricao: "Construir modelos algorítmicos e simulações estocásticas com números pseudoaleatórios para testar hipóteses probabilísticas em larga escala.",
-      curriculoPE: "Currículo de Pernambuco: Utilizar a probabilidade para interpretação de riscos em seguros, medicina diagnóstica, jogos de azar e tomada de decisões sob incerteza.",
+      curriculoPE: "Currículo de Pernambuco (CEDIM-PE): Utilizar a probabilidade para interpretação de riscos em seguros, medicina diagnóstica, jogos de azar e tomada de decisões sob incerteza.",
+      eixos: ["Pensamento Computacional", "Mundo Digital"],
       pilares: ["Algoritmos", "Abstração", "Decomposição"],
       objetivos: "Compreender a probabilidade como razão entre casos favoráveis e casos possíveis; aplicar a 'regra do contra' (evento complementar) e a regra do produto para eventos simultâneos; construir e rodar um simulador estocástico no Scratch para comparar probabilidade teórica e empírica com 1.000 lançamentos de moeda.",
       estrategias: "1. Abertura com lousa intuitiva e desafio prático de 3 moedas; 2. Deduzir o espaço amostral completo (8 casos) utilizando diagrama em árvore no quadro; 3. Apresentar a 'Fórmula de Ouro': P = Casos Favoráveis / Total; 4. Prática no Scratch: alunos utilizam o bloco de sorteio pseudoaleatório com laço de repetição de 1.000 iterações para verificar a convergência empírica para 50%.",
-      atividades: "PRAT-09 (Simulador de Probabilidade e Lei dos Grandes Números no Scratch) e PRAT-06 (Árvores de Probabilidade e Diagramas de Decisão).",
+      atividades: "• PRAT-09 - Simulador de Probabilidade e Lei dos Grandes Números no Scratch (Plugada)\n• PRAT-06 - Árvores de Probabilidade e Diagramas de Decisão (Desplugada)",
       recursos: "Lousa e pincéis, 30 moedas para experimentação manual em duplas, laboratório de informática ou computadores/smartphones com Scratch online/offline.",
       tempoPrevisto: "4 aulas (200 min)",
-      avaliacao: "Rubrica formativa: 1) Registro correto da árvore de possibilidades no caderno; 2) Cálculo sem erros das probabilidades teóricas compostas; 3) Participação e análise crítica da convergência estatística observada na simulação computacional.",
+      avaliacao: "Rubrica formativa alinhada aos eixos de Computação: 1) Registro correto da árvore de possibilidades no caderno; 2) Cálculo sem erros das probabilidades teóricas compostas; 3) Participação e análise crítica da convergência estatística observada na simulação computacional.",
       createdAt: "2026-09-15T10:30:00.000Z",
-      updatedAt: "2026-09-17T14:20:00.000Z"
+      updatedAt: "2026-09-18T14:20:00.000Z"
     },
     {
       id: "PLAN-2026-002",
-      ano: "6º Ano",
-      turma: "6º Ano B - Escola Municipal (Igarassu)",
-      conteudo: "Múltiplos, Divisores e Algoritmo de Euclides (MDC)",
-      habilidadeMatematicaCodigo: "EF06MA05",
-      habilidadeMatematicaDescricao: "Classificar números naturais em primos e compostos, estabelecer relações entre números expressas pelos termos 'é múltiplo de', 'é divisor de', 'é fator de', e estabelecer critérios de divisibilidade por 2, 3, 4, 5, 6, 8, 9, 10, 100 e 1000.",
-      habilidadeComputacaoCodigo: "EF06CO01",
-      habilidadeComputacaoDescricao: "Identificar e construir algoritmos que envolvam sequências de passos lógicos, instruções condicionais simples e repetições para a resolução de problemas.",
-      curriculoPE: "Currículo de Pernambuco: Articular os critérios de divisibilidade à elaboração de regras formais e fluxogramas de decisão, valorizando a formulação de hipóteses e a verificação empírica.",
-      pilares: ["Algoritmos", "Decomposição", "Reconhecimento de Padrões"],
-      objetivos: "Compreender o conceito de Maior Divisor Comum de forma concreta; aplicar o Algoritmo de Euclides com tiras de papel quadriculado e formalizar o raciocínio em um fluxograma lógico com laço de repetição condicional.",
-      estrategias: "Atividade desplugada em duplas com tiras de papel quadriculado cortadas em comprimentos diferentes. Os estudantes realizam divisões sucessivas por sobreposição física e registram cada etapa no caderno em formato de fluxograma com caixas de decisão 'Resto = 0?'.",
-      atividades: "PRAT-02 (O Desafio do MDC com o Algoritmo de Euclides Desplugado).",
-      recursos: "Folhas quadriculadas de 1cm², réguas, tesouras escolares e cartões com operadores de fluxograma (Início, Processo, Decisão, Fim).",
-      tempoPrevisto: "2 aulas (100 min)",
-      avaliacao: "Avaliação processual baseada na resolução do desafio do ladrilhamento de salas no papel e clareza na construção do fluxograma algorítmico da repetição condicional.",
-      createdAt: "2026-09-10T08:00:00.000Z",
-      updatedAt: "2026-09-12T09:15:00.000Z"
-    },
-    {
-      id: "PLAN-2026-003",
-      ano: "EJA Médio",
-      turma: "Módulo II - EJA Noturno",
-      conteudo: "Matemática Financeira, Juros e Orçamento Pessoal com Planilhas",
-      habilidadeMatematicaCodigo: "EM13MAT203",
-      habilidadeMatematicaDescricao: "Aplicar conceitos de matemática financeira (juros simples e compostos, descontos, inflação) para planejar investimentos, compras parceladas e gestão do orçamento familiar.",
-      habilidadeComputacaoCodigo: "EM13CO05",
-      habilidadeComputacaoDescricao: "Utilizar ferramentas digitais de cálculo automatizado e simulações para tomada de decisões econômicas éticas, consumo responsável e letramento financeiro-digital.",
-      curriculoPE: "Currículo de Pernambuco (EJA): Valorizar os saberes prévios dos estudantes trabalhadores, conectando a teoria matemática ao controle financeiro doméstico e trabalhista.",
-      pilares: ["Decomposição", "Abstração", "Algoritmos"],
-      objetivos: "Compreender a diferença entre juros simples e compostos a partir de situações reais de crédito rotativo e parcelamento; construir planilha automatizada com fórmulas no Google Planilhas para simular o crescimento de dívidas e organizar o orçamento pessoal.",
-      estrategias: "Discussão a partir de faturas de cartão de crédito e contas de energia. Demonstração no projetor da inserção de fórmulas de multiplicação iterativa em planilhas. Atividade prática no laboratório ou celulares para montar a 'Planilha Pessoal de Equilíbrio Financeiro'.",
-      atividades: "PRAT-14 (Simulador de Juros Compostos e Finanças) e PRAT-12 (Análise Estatística e Planilhas).",
-      recursos: "Laboratório de informática ou smartphones dos estudantes com Google Planilhas instalado, faturas reais desidentificadas e folhas guia impressas.",
+      nomeProfessor: "Prof. Rodrygo Dyego da Silva Nascimento",
+      escola: "Escola Municipal de Igarassu",
+      etapa: "Ensino Fundamental (Anos Finais)",
+      ano: "8º Ano",
+      turma: "8º Ano B - Tarde",
+      turno: "Vespertino",
+      conteudo: "Educação Financeira: Porcentagens, Acréscimos, Descontos e Juros Simples",
+      habilidadeMatematicaCodigo: "EF08MA04",
+      habilidadeMatematicaDescricao: "Resolver e elaborar problemas que envolvam o cálculo de porcentagens, incluindo os que lidam com acréscimos e decréscimos simples, utilizando estratégias pessoais, cálculo mental e calculadora, no contexto de educação financeira.",
+      habilidadeComputacaoCodigo: "EF08CO04",
+      habilidadeComputacaoDescricao: "Construir modelos automatizados em planilhas eletrônicas e scripts simples com operadores percentuais e condicionais para tomada de decisão financeira.",
+      curriculoPE: "Currículo de Pernambuco (CEDIM-PE): Contextualizar acréscimos e descontos em contas de energia (bandeiras tarifárias da Neoenergia), inflação nos preços de alimentos em feiras livres de Pernambuco e compras parceladas no comércio.",
+      eixos: ["Pensamento Computacional", "Mundo Digital", "Cultura Digital"],
+      pilares: ["Algoritmos", "Decomposição", "Abstração"],
+      objetivos: "Compreender o cálculo de porcentagens aplicadas ao consumo consciente; utilizar planilhas eletrônicas para modelar orçamentos e comparar compras à vista com desconto versus compras a prazo parceladas.",
+      estrategias: "Análise crítica de encartes de supermercado de Pernambuco. Construção no Google Planilhas de uma calculadora de juros simples e descontos comerciais, explorando a Cultura Digital e o Mundo Digital.",
+      atividades: "• PRAT-14 - Simulador de Juros Compostos e Finanças (Plugada)\n• PRAT-12 - Análise Estatística da Turma e Planilhas (Plugada)",
+      recursos: "Laboratório de informática ou smartphones com Google Planilhas / LibreOffice Calc, folhas guia com faturas reais desidentificadas.",
       tempoPrevisto: "3 aulas (150 min)",
-      avaliacao: "Entrega e apresentação da planilha orçamentária funcional com fórmulas automáticas de soma e cálculo de juros mensais, justificando a decisão financeira tomada diante de uma compra parcelada.",
-      createdAt: "2026-09-08T19:00:00.000Z",
-      updatedAt: "2026-09-09T21:00:00.000Z"
+      avaliacao: "Entrega e apresentação da planilha funcional com fórmulas automáticas de porcentagem e justificativa reflexiva sobre a decisão de consumo.",
+      createdAt: "2026-09-12T08:00:00.000Z",
+      updatedAt: "2026-09-14T09:15:00.000Z"
     }
   ];
 
   function init() {
     if (!localStorage.getItem(STORAGE_KEY)) {
-      localStorage.setItem(STORAGE_KEY, jsonStringify(DEFAULT_PLANEJAMENTOS));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_PLANEJAMENTOS));
     }
   }
 
-  function jsonStringify(data) {
+  function getTeacherProfile() {
     try {
-      return JSON.stringify(data);
-    } catch (e) {
-      console.error('Erro ao serializar dados:', e);
-      return '[]';
-    }
+      const data = localStorage.getItem(PROFILE_KEY);
+      if (data) return JSON.parse(data);
+    } catch (e) {}
+    return {
+      nomeProfessor: "Prof. Rodrygo Dyego da Silva Nascimento",
+      escola: "Rede Estadual de Pernambuco / Município de Igarassu"
+    };
   }
 
-  function jsonParse(str) {
+  function saveTeacherProfile(nomeProfessor, escola) {
     try {
-      return JSON.parse(str);
-    } catch (e) {
-      console.error('Erro ao fazer parse dos dados:', e);
-      return [];
-    }
+      localStorage.setItem(PROFILE_KEY, JSON.stringify({ nomeProfessor, escola }));
+    } catch (e) {}
   }
 
   function getAllPlanejamentos() {
     init();
-    const data = localStorage.getItem(STORAGE_KEY);
-    return jsonParse(data) || [];
+    try {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return JSON.parse(data) || [];
+    } catch (e) {
+      return [];
+    }
   }
 
   function getPlanejamentoById(id) {
@@ -111,8 +103,12 @@ const CompMathDB = (function() {
     const list = getAllPlanejamentos();
     const now = new Date().toISOString();
 
+    // Atualizar perfil padrão do docente para autopreenchimento futuro
+    if (planData.nomeProfessor || planData.escola) {
+      saveTeacherProfile(planData.nomeProfessor || '', planData.escola || '');
+    }
+
     if (planData.id) {
-      // Atualização
       const index = list.findIndex(item => item.id === planData.id);
       if (index !== -1) {
         list[index] = {
@@ -120,12 +116,11 @@ const CompMathDB = (function() {
           ...planData,
           updatedAt: now
         };
-        localStorage.setItem(STORAGE_KEY, jsonStringify(list));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
         return list[index];
       }
     }
 
-    // Novo planejamento
     const newId = 'PLAN-' + Date.now().toString(36).toUpperCase() + '-' + Math.floor(Math.random() * 1000);
     const newPlan = {
       ...planData,
@@ -134,14 +129,14 @@ const CompMathDB = (function() {
       updatedAt: now
     };
     list.unshift(newPlan);
-    localStorage.setItem(STORAGE_KEY, jsonStringify(list));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     return newPlan;
   }
 
   function deletePlanejamento(id) {
     let list = getAllPlanejamentos();
     list = list.filter(item => item.id !== id);
-    localStorage.setItem(STORAGE_KEY, jsonStringify(list));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
     return true;
   }
 
@@ -158,11 +153,16 @@ const CompMathDB = (function() {
   function getStats() {
     const list = getAllPlanejamentos();
     const totalPlanos = list.length;
-    
-    // Contagem de turmas distintas
     const turmas = new Set(list.map(p => p.turma).filter(Boolean));
     
-    // Contagem por pilares
+    // Contagem dos 3 Eixos da BNCC Computação
+    const eixosCount = {
+      "Pensamento Computacional": 0,
+      "Mundo Digital": 0,
+      "Cultura Digital": 0
+    };
+
+    // Contagem dos 4 Pilares do Pensamento Computacional
     const pilarCount = {
       "Algoritmos": 0,
       "Abstração": 0,
@@ -171,11 +171,20 @@ const CompMathDB = (function() {
     };
 
     list.forEach(p => {
+      // Eixos
+      if (Array.isArray(p.eixos)) {
+        p.eixos.forEach(eixo => {
+          if (eixosCount[eixo] !== undefined) eixosCount[eixo]++;
+        });
+      } else {
+        // Fallback
+        eixosCount["Pensamento Computacional"]++;
+      }
+
+      // Pilares
       if (Array.isArray(p.pilares)) {
         p.pilares.forEach(pilar => {
-          if (pilarCount[pilar] !== undefined) {
-            pilarCount[pilar]++;
-          }
+          if (pilarCount[pilar] !== undefined) pilarCount[pilar]++;
         });
       }
     });
@@ -183,9 +192,10 @@ const CompMathDB = (function() {
     return {
       totalPlanos,
       totalTurmas: turmas.size,
+      eixosCount,
       pilarCount,
-      totalCurriculo: typeof CURRICULO_DATA !== 'undefined' ? CURRICULO_DATA.length : 20,
-      totalPraticas: typeof PRATICAS_DATA !== 'undefined' ? PRATICAS_DATA.length : 15
+      totalCurriculo: typeof CURRICULO_DATA !== 'undefined' ? CURRICULO_DATA.length : 49,
+      totalPraticas: typeof PRATICAS_DATA !== 'undefined' ? PRATICAS_DATA.length : 20
     };
   }
 
@@ -193,7 +203,8 @@ const CompMathDB = (function() {
     const list = getAllPlanejamentos();
     const backup = {
       app: "CompMath",
-      version: "2.0.0",
+      version: "2.3.0",
+      framework: "BNCC Computação (Resolução CNE/CP 1/2022) - 3 Eixos",
       exportedAt: new Date().toISOString(),
       planejamentos: list
     };
@@ -204,10 +215,10 @@ const CompMathDB = (function() {
     try {
       const parsed = JSON.parse(jsonText);
       if (parsed && Array.isArray(parsed.planejamentos)) {
-        localStorage.setItem(STORAGE_KEY, jsonStringify(parsed.planejamentos));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed.planejamentos));
         return { success: true, count: parsed.planejamentos.length };
       } else if (Array.isArray(parsed)) {
-        localStorage.setItem(STORAGE_KEY, jsonStringify(parsed));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
         return { success: true, count: parsed.length };
       }
       return { success: false, error: 'Estrutura de dados inválida.' };
@@ -217,12 +228,14 @@ const CompMathDB = (function() {
   }
 
   function resetToDefaults() {
-    localStorage.setItem(STORAGE_KEY, jsonStringify(DEFAULT_PLANEJAMENTOS));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_PLANEJAMENTOS));
     return true;
   }
 
   return {
     init,
+    getTeacherProfile,
+    saveTeacherProfile,
     getAllPlanejamentos,
     getPlanejamentoById,
     savePlanejamento,
@@ -235,7 +248,6 @@ const CompMathDB = (function() {
   };
 })();
 
-// Inicializa no carregamento
 if (typeof window !== 'undefined') {
   CompMathDB.init();
 }

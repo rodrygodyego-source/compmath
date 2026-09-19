@@ -1,6 +1,7 @@
 /**
- * Controller: Dashboard
- * Tela inicial com resumo analítico, atalhos rápidos e planejamentos recentes.
+ * Controller: Dashboard (CompMath v2.3)
+ * Resumo dos 3 Eixos da BNCC Computação (Pensamento Computacional, Mundo Digital e Cultura Digital)
+ * e dos 4 Pilares do Pensamento Computacional nos planejamentos do docente.
  */
 
 const DashboardController = {
@@ -8,15 +9,12 @@ const DashboardController = {
     const stats = CompMathDB.getStats();
     const planejamentos = CompMathDB.getAllPlanejamentos();
     const recentes = planejamentos.slice(0, 3);
+    const profile = CompMathDB.getTeacherProfile();
 
-    // Calcular percentuais dos pilares
-    const totalPilaresCount = Object.values(stats.pilarCount).reduce((a, b) => a + b, 0) || 1;
-    const pilarPercents = {
-      "Algoritmos": Math.round((stats.pilarCount["Algoritmos"] / totalPilaresCount) * 100),
-      "Abstração": Math.round((stats.pilarCount["Abstração"] / totalPilaresCount) * 100),
-      "Decomposição": Math.round((stats.pilarCount["Decomposição"] / totalPilaresCount) * 100),
-      "Reconhecimento de Padrões": Math.round((stats.pilarCount["Reconhecimento de Padrões"] / totalPilaresCount) * 100)
-    };
+    const totalEixos = (stats.eixosCount["Pensamento Computacional"] + stats.eixosCount["Mundo Digital"] + stats.eixosCount["Cultura Digital"]) || 1;
+    const pcPct = Math.round((stats.eixosCount["Pensamento Computacional"] / totalEixos) * 100);
+    const mdPct = Math.round((stats.eixosCount["Mundo Digital"] / totalEixos) * 100);
+    const cdPct = Math.round((stats.eixosCount["Cultura Digital"] / totalEixos) * 100);
 
     let recentesHTML = '';
     if (recentes.length === 0) {
@@ -26,7 +24,7 @@ const DashboardController = {
             📋
           </div>
           <h4 class="text-lg font-semibold text-slate-800 mb-2">Nenhum planejamento salvo ainda</h4>
-          <p class="text-slate-600 text-sm max-w-md mx-auto mb-6">Comece criando seu primeiro plano de aula integrando os conteúdos de Matemática com o Pensamento Computacional e o Currículo de PE.</p>
+          <p class="text-slate-600 text-sm max-w-md mx-auto mb-6">Elabore sua primeira aula articulando a Matemática com os 3 eixos da BNCC Computação.</p>
           <a href="#planejamento" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-700 hover:bg-blue-800 text-white rounded-lg font-medium text-sm transition-colors">
             ➕ Criar Primeiro Planejamento
           </a>
@@ -38,32 +36,33 @@ const DashboardController = {
           ${recentes.map(p => `
             <div class="bg-white rounded-xl p-5 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div class="flex items-center justify-between gap-2 mb-3">
-                  <span class="text-xs font-semibold px-2.5 py-1 bg-blue-100 text-blue-800 rounded-full">${p.ano || 'Geral'}</span>
-                  <span class="text-xs text-slate-500">${p.turma || 'Turma não informada'}</span>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="text-xs font-semibold px-2.5 py-1 bg-blue-100 text-blue-900 rounded-full">${p.ano || 'Geral'}</span>
+                  <span class="text-xs text-slate-500 font-medium">${p.turma || 'Turma livre'}</span>
                 </div>
-                <h4 class="font-bold text-slate-800 text-base mb-2 line-clamp-2">${p.conteudo}</h4>
+                <h4 class="font-bold text-slate-800 text-base mb-1 line-clamp-2">${p.conteudo}</h4>
+                <p class="text-xs text-slate-500 mb-3 line-clamp-1">🏛️ ${p.escola || 'Escola não informada'}</p>
                 <div class="text-xs text-slate-600 mb-3 space-y-1">
                   <div class="flex items-center gap-1 font-mono text-blue-700 font-semibold">
                     <span>📐 ${p.habilidadeMatematicaCodigo || ''}</span>
                     <span class="text-slate-400">•</span>
                     <span class="text-emerald-700">💻 ${p.habilidadeComputacaoCodigo || ''}</span>
                   </div>
-                  <p class="line-clamp-2 text-slate-500 mt-1">${p.objetivos ? p.objetivos.slice(0, 110) + '...' : ''}</p>
                 </div>
+                
+                <!-- Eixos da BNCC Computação -->
                 <div class="flex flex-wrap gap-1 mb-4">
-                  ${(p.pilares || []).map(pilar => `
-                    <span class="text-[10px] px-2 py-0.5 rounded-full font-medium ${
-                      pilar === 'Algoritmos' ? 'badge-algoritmos' :
-                      pilar === 'Abstração' ? 'badge-abstracao' :
-                      pilar === 'Decomposição' ? 'badge-decomposicao' : 'badge-padroes'
-                    }">${pilar}</span>
+                  ${(p.eixos || ["Pensamento Computacional"]).map(eixo => `
+                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                      eixo === 'Pensamento Computacional' ? 'badge-eixo-pc' :
+                      eixo === 'Mundo Digital' ? 'badge-eixo-md' : 'badge-eixo-cd'
+                    }">${eixo === 'Pensamento Computacional' ? '🧠' : eixo === 'Mundo Digital' ? '💻' : '👥'} ${eixo}</span>
                   `).join('')}
                 </div>
               </div>
               <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
                 <a href="#detalhes?id=${p.id}" class="text-xs font-semibold text-blue-700 hover:text-blue-900 flex items-center gap-1">
-                  Ver Detalhes →
+                  Ficha Oficial →
                 </a>
                 <div class="flex items-center gap-2">
                   <a href="#planejamento?id=${p.id}" class="text-xs text-slate-600 hover:text-blue-700 p-1 rounded" title="Editar">
@@ -82,36 +81,36 @@ const DashboardController = {
 
     container.innerHTML = `
       <div class="fade-in space-y-8">
-        <!-- Banner de Boas-Vindas e Propósito -->
-        <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-800 text-white rounded-2xl p-6 sm:p-8 shadow-lg relative overflow-hidden">
+        <!-- Banner Principal com os 3 EIXOS da BNCC Computação -->
+        <div class="bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-950 text-white rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
           <div class="relative z-10 max-w-3xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold tracking-wide text-blue-200 mb-3 backdrop-blur-sm">
-              <span>🌟 Plataforma Educacional CompMath</span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-bold tracking-wide text-emerald-300 mb-3 backdrop-blur-sm border border-white/15">
+              <span>🌟 Plataforma Aberta para Professores</span>
               <span>•</span>
-              <span>BNCC Computação & Currículo de PE</span>
+              <span>Resolução CNE/CP nº 1/2022 & CEDIM-PE</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3">
-              Integração Inteligente entre Matemática e Pensamento Computacional
+            <h2 class="text-2xl sm:text-3xl font-black tracking-tight mb-2">
+              Integração da Matemática com os 3 Eixos da BNCC Computação
             </h2>
-            <p class="text-blue-100 text-sm sm:text-base leading-relaxed mb-6">
-              Desenvolvida para apoiar o trabalho do professor na Educação Básica (Anos Finais, Ensino Médio e EJA). Conecte habilidades curriculares oficiais, explore práticas plugadas e desplugadas e elabore planejamentos prontos para exportar em PDF.
+            <p class="text-blue-100 text-xs sm:text-sm leading-relaxed mb-4">
+              Articule o ensino de Matemática ao <strong>Pensamento Computacional</strong>, ao <strong>Mundo Digital</strong> e à <strong>Cultura Digital</strong>. Plataforma aberta e gratuita para planejamento pedagógico, com suporte a cabeçalhos oficiais de escola, matriz curricular e banco de práticas.
             </p>
+
             <div class="flex flex-wrap gap-3">
-              <a href="#planejamento" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-semibold text-sm shadow transition-all flex items-center gap-2">
-                <span>➕ Criar Novo Planejamento</span>
+              <a href="#planejamento" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-bold text-xs sm:text-sm shadow transition-all flex items-center gap-2">
+                <span>➕ Elaborar Planejamento</span>
               </a>
-              <a href="#integracao" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-lg font-semibold text-sm backdrop-blur-sm transition-all flex items-center gap-2">
-                <span>🔍 Explorar Matriz Curricular</span>
+              <a href="#integracao" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-lg font-semibold text-xs sm:text-sm backdrop-blur-sm transition-all flex items-center gap-2">
+                <span>🔗 Matriz dos 3 Eixos</span>
               </a>
-              <a href="#praticas" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-lg font-semibold text-sm backdrop-blur-sm transition-all flex items-center gap-2">
+              <a href="#praticas" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-lg font-semibold text-xs sm:text-sm backdrop-blur-sm transition-all flex items-center gap-2">
                 <span>💡 Banco de Práticas</span>
               </a>
             </div>
           </div>
-          <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
         </div>
 
-        <!-- Cards de Estatísticas -->
+        <!-- Cards de Métricas Gerais -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-2xl font-bold">
@@ -158,81 +157,79 @@ const DashboardController = {
           </div>
         </div>
 
-        <!-- Seção de Pilares e Metodologia -->
+        <!-- Painel dos 3 EIXOS da BNCC Computação -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- Gráfico/Distribuição de Pilares -->
-          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm lg:col-span-2">
-            <div class="flex items-center justify-between mb-4">
+          <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm lg:col-span-2 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
               <div>
-                <h3 class="text-lg font-bold text-slate-800">Pilares do Pensamento Computacional</h3>
-                <p class="text-xs text-slate-500">Presença dos 4 pilares nos seus planejamentos pedagógicos elaborados</p>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+                  <span>🌐</span> Presença dos 3 Eixos da BNCC Computação nos Planos
+                </h3>
+                <p class="text-xs text-slate-500">Equilíbrio formativo conforme a Resolução CNE/CP nº 1/2022</p>
               </div>
-              <span class="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-medium">Equilíbrio Curricular</span>
             </div>
+
             <div class="space-y-4">
+              <!-- Eixo 1 -->
               <div>
-                <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span> Algoritmos (Passo a passo lógico e repetições)</span>
-                  <span>${stats.pilarCount["Algoritmos"]} planos (${pilarPercents["Algoritmos"]}%)</span>
+                <div class="flex justify-between text-xs font-bold text-slate-800 mb-1">
+                  <span class="flex items-center gap-2 text-indigo-900">
+                    <span>🧠</span> Pensamento Computacional (Algoritmos, Decomposição, Abstração, Padrões)
+                  </span>
+                  <span>${stats.eixosCount["Pensamento Computacional"]} planos (${pcPct}%)</span>
                 </div>
                 <div class="w-full bg-slate-100 rounded-full h-3">
-                  <div class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: ${pilarPercents["Algoritmos"]}%"></div>
+                  <div class="bg-indigo-600 h-3 rounded-full transition-all duration-500" style="width: ${pcPct}%"></div>
                 </div>
               </div>
 
+              <!-- Eixo 2 -->
               <div>
-                <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span> Abstração (Foco no essencial e modelos gerais)</span>
-                  <span>${stats.pilarCount["Abstração"]} planos (${pilarPercents["Abstração"]}%)</span>
+                <div class="flex justify-between text-xs font-bold text-slate-800 mb-1">
+                  <span class="flex items-center gap-2 text-cyan-900">
+                    <span>💻</span> Mundo Digital (Sistemas, Codificação Binária, Hardware, Software e Planilhas)
+                  </span>
+                  <span>${stats.eixosCount["Mundo Digital"]} planos (${mdPct}%)</span>
                 </div>
                 <div class="w-full bg-slate-100 rounded-full h-3">
-                  <div class="bg-purple-600 h-3 rounded-full transition-all duration-500" style="width: ${pilarPercents["Abstração"]}%"></div>
+                  <div class="bg-cyan-600 h-3 rounded-full transition-all duration-500" style="width: ${mdPct}%"></div>
                 </div>
               </div>
 
+              <!-- Eixo 3 -->
               <div>
-                <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Decomposição (Divisão de problemas complexos)</span>
-                  <span>${stats.pilarCount["Decomposição"]} planos (${pilarPercents["Decomposição"]}%)</span>
+                <div class="flex justify-between text-xs font-bold text-slate-800 mb-1">
+                  <span class="flex items-center gap-2 text-emerald-900">
+                    <span>👥</span> Cultura Digital (Uso Ético, Cidadania, Segurança, Fake News e Letramento)
+                  </span>
+                  <span>${stats.eixosCount["Cultura Digital"]} planos (${cdPct}%)</span>
                 </div>
                 <div class="w-full bg-slate-100 rounded-full h-3">
-                  <div class="bg-amber-500 h-3 rounded-full transition-all duration-500" style="width: ${pilarPercents["Decomposição"]}%"></div>
-                </div>
-              </div>
-
-              <div>
-                <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1">
-                  <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Reconhecimento de Padrões (Regularidades e generalização)</span>
-                  <span>${stats.pilarCount["Reconhecimento de Padrões"]} planos (${pilarPercents["Reconhecimento de Padrões"]}%)</span>
-                </div>
-                <div class="w-full bg-slate-100 rounded-full h-3">
-                  <div class="bg-emerald-600 h-3 rounded-full transition-all duration-500" style="width: ${pilarPercents["Reconhecimento de Padrões"]}%"></div>
+                  <div class="bg-emerald-600 h-3 rounded-full transition-all duration-500" style="width: ${cdPct}%"></div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Informações de Apoio ao Docente -->
-          <div class="bg-gradient-to-br from-slate-50 to-blue-50/50 rounded-xl p-6 border border-slate-200 flex flex-col justify-between">
+          <div class="bg-gradient-to-br from-slate-50 to-blue-50/60 rounded-xl p-6 border border-slate-200 flex flex-col justify-between space-y-4">
             <div>
-              <div class="flex items-center gap-2 mb-3">
+              <div class="flex items-center gap-2 mb-2">
                 <span class="text-xl">📖</span>
-                <h4 class="font-bold text-slate-800 text-sm">Resolução CNE/CP nº 1/2022</h4>
+                <h4 class="font-bold text-slate-900 text-sm">Estrutura da BNCC Computação</h4>
               </div>
-              <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                A BNCC Computação institui que o Pensamento Computacional, o Mundo Digital e a Cultura Digital devem ser desenvolvidos de modo interdisciplinar, com destaque prioritário para a articulação com a Matemática.
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                A Computação na Educação Básica não se reduz à programação de computadores: ela articula a <strong>Cultura Digital</strong> (sociedade e ética), o <strong>Mundo Digital</strong> (tecnologia e dados) e o <strong>Pensamento Computacional</strong> (raciocínio lógico e resolução de problemas).
               </p>
-              <div class="p-3 bg-white rounded-lg border border-slate-200 text-xs text-slate-700 space-y-1.5">
-                <p class="font-semibold text-blue-900">💡 Dica Didática CompMath:</p>
-                <p>Comece com atividades <strong>desplugadas</strong> (sem telas) para fixar conceitos lógicos e, em seguida, consolide com práticas <strong>plugadas</strong> (Scratch, GeoGebra ou Planilhas).</p>
+              <div class="p-3 bg-white rounded-lg border border-slate-200 text-xs text-slate-700 space-y-1">
+                <p class="font-bold text-blue-900">💡 Aplicação Aberta:</p>
+                <p>Ao criar uma aula, informe a escola e seu nome no cabeçalho. Todos os dados são salvos com segurança no seu navegador.</p>
               </div>
             </div>
-            <div class="mt-4 pt-4 border-t border-slate-200/60">
-              <a href="#integracao" class="text-xs font-semibold text-blue-700 hover:text-blue-900 flex items-center justify-between">
-                <span>Ver Matriz de Integração Curricular</span>
-                <span>→</span>
-              </a>
-            </div>
+            <a href="#planejamento" class="text-xs font-bold text-blue-700 hover:text-blue-900 flex items-center justify-between pt-2 border-t border-slate-200">
+              <span>Iniciar Novo Planejamento</span>
+              <span>→</span>
+            </a>
           </div>
         </div>
 
@@ -241,7 +238,7 @@ const DashboardController = {
           <div class="flex items-center justify-between mb-4">
             <div>
               <h3 class="text-lg font-bold text-slate-800">Planejamentos Pedagógicos Recentes</h3>
-              <p class="text-xs text-slate-500">Acesse, edite ou gere o PDF oficial das suas aulas salvas</p>
+              <p class="text-xs text-slate-500">Visualize a ficha oficial ou gere o PDF para impressão das suas aulas</p>
             </div>
             <a href="#detalhes" class="text-xs font-semibold text-blue-700 hover:text-blue-900">
               Ver Todos (${planejamentos.length}) →

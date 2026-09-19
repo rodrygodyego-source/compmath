@@ -1,12 +1,12 @@
-// Base Curricular Completa CompMath: BNCC Matemática + BNCC Computação (Resolução CNE/CP 1/2022) + Currículo de PE
-// Cobertura exaustiva: 6º ao 9º ano EF, 1º ao 3º ano EM e EJA (Fundamental e Médio)
+// Base Curricular Completa CompMath: BNCC Matemática + BNCC Computação (Resolução CNE/CP 1/2022)
+// Mapeamento aprofundado nos 3 Eixos: Pensamento Computacional, Mundo Digital e Cultura Digital • CEDIM-PE
 
 const CURRICULO_DATA = [
   {
     "id": "CURR-EF6-01",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "6º Ano",
-    "conteudo": "Sistemas de Numeração, Bases Numéricas e Binário",
+    "conteudo": "Sistema de Numeração Decimal, Ordens e Conversão Binária",
     "unidadeTematica": "Números",
     "habilidadeMatematica": {
       "codigo": "EF06MA01",
@@ -16,7 +16,7 @@ const CURRICULO_DATA = [
       "codigo": "EF06CO03",
       "descricao": "Compreender que sistemas digitais representam qualquer informação (números, textos, sons, imagens) utilizando o sistema binário (bits 0 e 1) e bases numéricas."
     },
-    "curriculoPE": "Currículo de Pernambuco: Relacionar a evolução histórica dos sistemas de numeração (egípcio, romano, maia e indo-arábico) às necessidades de contagem e ao surgimento dos computadores digitais.",
+    "curriculoPE": "Currículo de Pernambuco: Relacionar a evolução histórica dos sistemas de numeração (egípcio, romano, maia e indo-arábico) às necessidades de contagem e à representação de dados em computadores.",
     "pilares": [
       "Abstração",
       "Reconhecimento de Padrões"
@@ -26,13 +26,17 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-04",
       "PRAT-01"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF6-02",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "6º Ano",
-    "conteudo": "Algoritmo de Euclides e Critérios de Divisibilidade (MDC e MMC)",
+    "conteudo": "Critérios de Divisibilidade, Primos e Algoritmo de Euclides (MDC)",
     "unidadeTematica": "Números",
     "habilidadeMatematica": {
       "codigo": "EF06MA05",
@@ -53,13 +57,16 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-02",
       "PRAT-03"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF6-03",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "6º Ano",
-    "conteudo": "Operações Fundamentais e Fluxogramas com Condicionais",
+    "conteudo": "Operações Fundamentais com Naturais e Fluxogramas com Condicionais",
     "unidadeTematica": "Álgebra",
     "habilidadeMatematica": {
       "codigo": "EF06MA03",
@@ -79,32 +86,40 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-03",
       "PRAT-02"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF6-04",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "6º Ano",
-    "conteudo": "Frações, Equivalência e Lógica de Simplificação",
-    "unidadeTematica": "Números",
+    "conteudo": "Propriedades da Igualdade e Equações na Balança de Pratos",
+    "unidadeTematica": "Álgebra",
     "habilidadeMatematica": {
-      "codigo": "EF06MA07",
-      "descricao": "Compreender, comparar e ordenar frações associadas às ideias de parte de inteiros e resultado de divisão, identificando frações equivalentes."
+      "codigo": "EF06MA14",
+      "descricao": "Reconhecer que a relação de igualdade matemática não se altera ao adicionar, subtrair, multiplicar ou dividir os seus dois membros por um mesmo número e utilizar essa noção para determinar valores desconhecidos."
     },
     "habilidadeComputacao": {
       "codigo": "EF06CO01",
-      "descricao": "Construir algoritmos iterativos que apliquem divisões sucessivas por fatores comuns até a obtenção de uma forma irredutível."
+      "descricao": "Construir algoritmos de balanceamento e inversão de operações aritméticas para descoberta de incógnitas."
     },
-    "curriculoPE": "Currículo de Pernambuco: Fomentar o uso de representações visuais concretas (barras de frações, círculos) e conexões com partilhas em feiras livres e culinária pernambucana.",
+    "curriculoPE": "Currículo de Pernambuco: Princípio da equivalência operacional e transição do pensamento aritmético para o algébrico com analogias concretas.",
     "pilares": [
-      "Abstração",
-      "Algoritmos"
+      "Algoritmos",
+      "Abstração"
     ],
-    "objetivosSugeridos": "Identificar frações equivalentes por multiplicação/divisão e programar um verificador simples no Scratch que testa se numerador1 × denominador2 = numerador2 × denominador1.",
-    "estrategiasSugeridas": "Uso de tiras fracionárias de cartolina colorida combinado com testes lógicos de equivalência cruzada.",
+    "objetivosSugeridos": "Manter o equilíbrio de equações aplicando operações inversas em ambos os membros; representar a regra de equivalência em um algoritmo condicional.",
+    "estrategiasSugeridas": "Simulação de balança de dois pratos no Scratch onde adicionar pesos em um prato exige a mesma ação no outro.",
     "praticasRecomendadas": [
-      "PRAT-10",
-      "PRAT-15"
+      "PRAT-03",
+      "PRAT-13"
+    ],
+    "eixos": [
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -131,13 +146,17 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-01",
       "PRAT-10"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF6-06",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "6º Ano",
-    "conteudo": "Polígonos, Ângulos e Desenho Computacional com Repetição",
+    "conteudo": "Polígonos Regulares, Ângulos e Desenho Algorítmico com Caneta",
     "unidadeTematica": "Geometria",
     "habilidadeMatematica": {
       "codigo": "EF06MA18",
@@ -157,6 +176,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-10",
       "PRAT-07"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -183,6 +205,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-02",
       "PRAT-12"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -209,13 +234,18 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-12",
       "PRAT-14"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF7-01",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "7º Ano",
-    "conteudo": "Números Inteiros, Reta Numérica e Variáveis de Estado",
+    "conteudo": "Números Inteiros, Reta Orientada e Variáveis de Estado",
     "unidadeTematica": "Números",
     "habilidadeMatematica": {
       "codigo": "EF07MA04",
@@ -235,6 +265,10 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-04",
       "PRAT-09"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -262,10 +296,44 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-13",
       "PRAT-03"
+    ],
+    "eixos": [
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF7-03",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "7º Ano",
+    "conteudo": "Razão, Proporcionalidade e Regra de Três Algorítmica",
+    "unidadeTematica": "Álgebra",
+    "habilidadeMatematica": {
+      "codigo": "EF07MA17",
+      "descricao": "Resolver e elaborar problemas que envolvam variação de proporcionalidade direta e do tipo inverso entre duas grandezas, incluindo escalas, divisão em partes proporcionais e taxa de variação."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF07CO02",
+      "descricao": "Implementar rotinas de conversão e escalonamento linear de grandezas físicas e visuais em interfaces computacionais."
+    },
+    "curriculoPE": "Currículo de Pernambuco: Aplicações em escalas cartográficas da Região Metropolitana do Recife e receitas da culinária regional pernambucana.",
+    "pilares": [
+      "Algoritmos",
+      "Decomposição"
+    ],
+    "objetivosSugeridos": "Modelar a regra de três simples direta em algoritmo computacional: x = (b × c) / a; calcular escalas de redução e ampliação.",
+    "estrategiasSugeridas": "Conversor automático de receitas culinárias para diferentes números de porções desenvolvido em planilha ou Scratch.",
+    "praticasRecomendadas": [
+      "PRAT-12",
+      "PRAT-14"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ]
+  },
+  {
+    "id": "CURR-EF7-04",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "7º Ano",
     "conteudo": "Transformações Geométricas, Simetrias e Rotações no Scratch",
@@ -288,39 +356,45 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-10",
       "PRAT-07"
-    ]
-  },
-  {
-    "id": "CURR-EF7-04",
-    "etapa": "Ensino Fundamental (Anos Finais)",
-    "ano": "7º Ano",
-    "conteudo": "Razão, Proporcionalidade e Regra de Três Algorítmica",
-    "unidadeTematica": "Números e Álgebra",
-    "habilidadeMatematica": {
-      "codigo": "EF07MA17",
-      "descricao": "Resolver e elaborar problemas que envolvam variação de proporcionalidade direta e do tipo inverso entre duas grandezas, incluindo escalas, divisão em partes proporcionais e taxa de variação."
-    },
-    "habilidadeComputacao": {
-      "codigo": "EF07CO02",
-      "descricao": "Implementar rotinas de conversão e escalonamento linear de grandezas físicas e visuais em interfaces computacionais."
-    },
-    "curriculoPE": "Currículo de Pernambuco: Aplicações em escalas cartográficas da Região Metropolitana do Recife e receitas da culinária regional pernambucana.",
-    "pilares": [
-      "Algoritmos",
-      "Decomposição"
     ],
-    "objetivosSugeridos": "Modelar a regra de três simples direta em algoritmo computacional: x = (b × c) / a; calcular escalas de redução e ampliação.",
-    "estrategiasSugeridas": "Conversor automático de receitas culinárias para diferentes números de porções desenvolvido em planilha ou Scratch.",
-    "praticasRecomendadas": [
-      "PRAT-12",
-      "PRAT-14"
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF7-05",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "7º Ano",
-    "conteudo": "Experimentos Aleatórios e Espaço Amostral",
+    "conteudo": "Condição de Existência de Triângulos e Desigualdade Triangular",
+    "unidadeTematica": "Geometria",
+    "habilidadeMatematica": {
+      "codigo": "EF07MA27",
+      "descricao": "Calcular medidas de ângulos internos de polígonos regulares e reconhecer a condição de existência de triângulos quanto à medida dos lados."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF07CO01",
+      "descricao": "Construir árvores de decisão lógicas com operadores booleanos (E, OU, NÃO) para validação e classificação de dados geométricos."
+    },
+    "curriculoPE": "Currículo de Pernambuco: Investigação empírica com canudos ou palitos de fósforo para constatar a rigidez triangular nas pontes metálicas de Pernambuco.",
+    "pilares": [
+      "Algoritmos",
+      "Decomposição"
+    ],
+    "objetivosSugeridos": "Implementar um algoritmo que receba 3 segmentos e verifique logicamente se formam triângulo: (a < b + c) E (b < a + c) E (c < a + b), classificando-os em equilátero, isósceles ou escaleno.",
+    "estrategiasSugeridas": "Construção do Classificador Lógico de Triângulos no Scratch ou em Python com testes de valores reais.",
+    "praticasRecomendadas": [
+      "PRAT-15",
+      "PRAT-03"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
+    ]
+  },
+  {
+    "id": "CURR-EF7-06",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "7º Ano",
+    "conteudo": "Experimentos Aleatórios, Frequência e Probabilidade Teórica",
     "unidadeTematica": "Probabilidade e Estatística",
     "habilidadeMatematica": {
       "codigo": "EF07MA36",
@@ -340,13 +414,16 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-09",
       "PRAT-06"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF8-01",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "8º Ano",
-    "conteudo": "Notação Científica e Armazenamento de Dados Digitais",
+    "conteudo": "Notação Científica e Representação Digital de Informações (Bits e Bytes)",
     "unidadeTematica": "Números",
     "habilidadeMatematica": {
       "codigo": "EF08MA01",
@@ -366,6 +443,73 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-04",
       "PRAT-12"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ]
+  },
+  {
+    "id": "CURR-EF8-FIN01",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "8º Ano",
+    "conteudo": "Educação Financeira: Porcentagens, Acréscimos, Descontos e Juros Simples",
+    "unidadeTematica": "Matemática Financeira",
+    "habilidadeMatematica": {
+      "codigo": "EF08MA04",
+      "descricao": "Resolver e elaborar problemas que envolvam o cálculo de porcentagens, incluindo os que lidam com acréscimos e decréscimos simples, utilizando estratégias pessoais, cálculo mental e calculadora, no contexto de educação financeira, entre outros."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF08CO04",
+      "descricao": "Construir modelos automatizados em planilhas eletrônicas e scripts simples com operadores percentuais e condicionais para tomada de decisão financeira."
+    },
+    "curriculoPE": "Currículo de Pernambuco: Contextualizar acréscimos e descontos em contas de energia (bandeiras tarifárias da Neoenergia), inflação nos preços de alimentos em feiras livres de Pernambuco e compras parceladas no comércio.",
+    "pilares": [
+      "Algoritmos",
+      "Decomposição",
+      "Abstração"
+    ],
+    "objetivosSugeridos": "Calcular acréscimos e descontos sucessivos em situações reais de compras; desenvolver uma calculadora automatizada de juros simples no Scratch ou Google Planilhas.",
+    "estrategiasSugeridas": "Análise crítica de encartes de supermercado e lojas de eletrodomésticos: comparar compra à vista com desconto versus a prazo parcelada, programando as fórmulas em planilha.",
+    "praticasRecomendadas": [
+      "PRAT-14",
+      "PRAT-12"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
+    ]
+  },
+  {
+    "id": "CURR-EF8-FIN02",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "8º Ano",
+    "conteudo": "Fração Percentual, Decimais e Orçamento em Planilhas Eletrônicas",
+    "unidadeTematica": "Matemática Financeira",
+    "habilidadeMatematica": {
+      "codigo": "EF08MA05",
+      "descricao": "Reconhecer e utilizar procedimentos para a obtenção de uma fração percentual e a representação decimal correspondente, aplicando esse conhecimento em situações de educação financeira (taxas de juros, inflação, compras à vista e a prazo)."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF08CO04",
+      "descricao": "Utilizar funções de formatação numérica (moeda, porcentagem, decimal) e fórmulas de multiplicação automática em ferramentas de produtividade digital."
+    },
+    "curriculoPE": "Currículo de Pernambuco: Estimular o letramento financeiro e o consumo consciente dos estudantes e suas famílias, analisando orçamentos domésticos reais.",
+    "pilares": [
+      "Abstração",
+      "Reconhecimento de Padrões"
+    ],
+    "objetivosSugeridos": "Converter instantaneamente frações, decimais e porcentagens; estruturar uma planilha de orçamento familiar pessoal no Google Planilhas.",
+    "estrategiasSugeridas": "Oficina prática com Google Planilhas calculando gastos por categoria (alimentação, transporte, lazer) com gráficos de pizza automáticos.",
+    "praticasRecomendadas": [
+      "PRAT-12",
+      "PRAT-14"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -393,6 +537,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-06",
       "PRAT-09"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -419,13 +566,18 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-12",
       "PRAT-14"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF8-04",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "8º Ano",
-    "conteudo": "Expressões Algébricas, Fórmulas e Funções em Programação",
+    "conteudo": "Expressões Algébricas, Fórmulas e Funções Parametrizadas",
     "unidadeTematica": "Álgebra",
     "habilidadeMatematica": {
       "codigo": "EF08MA06",
@@ -445,13 +597,16 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-13",
       "PRAT-10"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
     "id": "CURR-EF8-05",
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "8º Ano",
-    "conteudo": "Sistemas de Equações de 1º Grau e Busca de Soluções",
+    "conteudo": "Sistemas de Equações de 1º Grau e Busca Gráfica no GeoGebra",
     "unidadeTematica": "Álgebra",
     "habilidadeMatematica": {
       "codigo": "EF08MA08",
@@ -471,6 +626,39 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-11",
       "PRAT-13"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ]
+  },
+  {
+    "id": "CURR-EF8-06",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "8º Ano",
+    "conteudo": "Área de Figuras Planas, Círculo e Algoritmos de Aproximação",
+    "unidadeTematica": "Grandezas e Medidas",
+    "habilidadeMatematica": {
+      "codigo": "EF08MA19",
+      "descricao": "Resolver e elaborar problemas que envolvam medidas de área de figuras geométricas, utilizando expressões de cálculo de área (quadriláteros, triângulos e círculos), em situações como determinar medida de terrenos."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF08CO01",
+      "descricao": "Implementar rotinas algorítmicas de cálculo automático de áreas e estimativa de Pi por polígonos inscritos/circunscritos."
+    },
+    "curriculoPE": "Currículo de Pernambuco: Medição de áreas de terrenos e construções em áreas rurais e urbanas do estado de Pernambuco.",
+    "pilares": [
+      "Algoritmos",
+      "Abstração"
+    ],
+    "objetivosSugeridos": "Calcular área do círculo A = πR² e compreender a constante Pi através do Método de Arquimedes com polígonos regulares no GeoGebra.",
+    "estrategiasSugeridas": "Aproximação de Pi aumentando o número de lados de um polígono regular inscrito no GeoGebra de 6 para 96 lados.",
+    "praticasRecomendadas": [
+      "PRAT-08",
+      "PRAT-11"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -498,6 +686,10 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-11",
       "PRAT-13"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -525,6 +717,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-13",
       "PRAT-03"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -552,6 +747,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-09",
       "PRAT-08"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -559,7 +757,7 @@ const CURRICULO_DATA = [
     "etapa": "Ensino Fundamental (Anos Finais)",
     "ano": "9º Ano",
     "conteudo": "Noção de Função e Dependência entre Grandezas",
-    "unidadeTematica": "Álgebra e Funções",
+    "unidadeTematica": "Álgebra",
     "habilidadeMatematica": {
       "codigo": "EF09MA06",
       "descricao": "Compreender as funções como relações de dependência unívoca entre duas variáveis e suas representações numérica, algébrica e gráfica e utilizar esse conceito para analisar situações que envolvam relações funcionais entre duas variáveis."
@@ -578,6 +776,40 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-11",
       "PRAT-13"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
+    ]
+  },
+  {
+    "id": "CURR-EF9-05",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "9º Ano",
+    "conteudo": "Volumes de Cilindros e Prismas Retos",
+    "unidadeTematica": "Grandezas e Medidas",
+    "habilidadeMatematica": {
+      "codigo": "EF09MA19",
+      "descricao": "Resolver e elaborar problemas que envolvam medidas de volumes de prismas e de cilindros retos, inclusive com uso de expressões de cálculo, em situações cotidianas."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF09CO04",
+      "descricao": "Criar rotinas algorítmicas para cálculo de capacidade cúbica e simulação volumétrica de embalagens industriais."
+    },
+    "curriculoPE": "Currículo de Pernambuco: Dimensionamento de reservatórios de água e cisternas no semiárido pernambucano (Agreste e Sertão).",
+    "pilares": [
+      "Decomposição",
+      "Algoritmos"
+    ],
+    "objetivosSugeridos": "Calcular volumes de cilindros V = π·R²·h e prismas retos; comparar o custo por litro de diferentes formatos de recipientes.",
+    "estrategiasSugeridas": "Simulador de capacidade de cisternas feito no Google Planilhas recebendo diâmetro e altura.",
+    "praticasRecomendadas": [
+      "PRAT-12",
+      "PRAT-14"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -605,6 +837,10 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-11",
       "PRAT-14"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -632,6 +868,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-11",
       "PRAT-13"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -659,6 +898,10 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-05",
       "PRAT-14"
+    ],
+    "eixos": [
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -686,6 +929,11 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-14",
       "PRAT-12"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -693,7 +941,7 @@ const CURRICULO_DATA = [
     "etapa": "Ensino Médio",
     "ano": "2º Ano EM",
     "conteudo": "Matrizes, Operações e Processamento de Imagens Digitais",
-    "unidadeTematica": "Álgebra Linear e Geometria",
+    "unidadeTematica": "Álgebra e Funções",
     "habilidadeMatematica": {
       "codigo": "EM13MAT202",
       "descricao": "Planejar e executar pesquisa amostral sobre questões relevantes, utilizando matrizes, tabelas e gráficos para sintetizar e comparar conjuntos multivariados de dados."
@@ -713,6 +961,10 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-04",
       "PRAT-12"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -720,7 +972,7 @@ const CURRICULO_DATA = [
     "etapa": "Ensino Médio",
     "ano": "2º Ano EM",
     "conteudo": "Análise Combinatória e Segurança Criptográfica de Senhas",
-    "unidadeTematica": "Probabilidade e Estatística",
+    "unidadeTematica": "Estatística e Probabilidade",
     "habilidadeMatematica": {
       "codigo": "EM13MAT310",
       "descricao": "Resolver e elaborar problemas de contagem envolvendo agrupamentos (combinações simples, arranjos e permutações) com ou sem repetição, justificando as técnicas mobilizadas."
@@ -740,6 +992,11 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-04",
       "PRAT-06"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -766,6 +1023,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-10",
       "PRAT-11"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -793,6 +1053,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-09",
       "PRAT-08"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -820,6 +1083,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-06",
       "PRAT-09"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -827,7 +1093,7 @@ const CURRICULO_DATA = [
     "etapa": "Ensino Médio",
     "ano": "3º Ano EM",
     "conteudo": "Geometria Espacial: Poliedros, Corpos Redondos e Modelagem 3D",
-    "unidadeTematica": "Geometria Espacial",
+    "unidadeTematica": "Geometria e Trigonometria",
     "habilidadeMatematica": {
       "codigo": "EM13MAT401",
       "descricao": "Converter representações de figuras bidimensionais e tridimensionais, articulando noções de projeção ortogonal, vistas e planificações de sólidos geométricos."
@@ -846,6 +1112,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-07",
       "PRAT-11"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -873,6 +1142,10 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-12",
       "PRAT-14"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -880,7 +1153,7 @@ const CURRICULO_DATA = [
     "etapa": "EJA",
     "ano": "EJA Fundamental",
     "conteudo": "Operações Aritméticas e Orçamento Básico no Comércio",
-    "unidadeTematica": "Matemática e Cotidiano",
+    "unidadeTematica": "Matemática do Cotidiano",
     "habilidadeMatematica": {
       "codigo": "EF06MA03",
       "descricao": "Resolver problemas envolvendo cálculos com números naturais e racionais em contextos de compras, troco e controle de caixa."
@@ -899,6 +1172,10 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-01",
       "PRAT-14"
+    ],
+    "eixos": [
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -926,6 +1203,9 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-03",
       "PRAT-01"
+    ],
+    "eixos": [
+      "Pensamento Computacional"
     ]
   },
   {
@@ -933,7 +1213,7 @@ const CURRICULO_DATA = [
     "etapa": "EJA",
     "ano": "EJA Médio",
     "conteudo": "Matemática Financeira, Juros de Cartão e Planilha Doméstica",
-    "unidadeTematica": "Matemática e Trabalho",
+    "unidadeTematica": "Matemática Financeira",
     "habilidadeMatematica": {
       "codigo": "EM13MAT203",
       "descricao": "Aplicar conceitos de matemática financeira (juros simples e compostos, descontos, inflação) para planejar investimentos, compras parceladas e gestão do orçamento familiar."
@@ -953,6 +1233,11 @@ const CURRICULO_DATA = [
     "praticasRecomendadas": [
       "PRAT-14",
       "PRAT-12"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
     ]
   },
   {
@@ -960,7 +1245,7 @@ const CURRICULO_DATA = [
     "etapa": "EJA",
     "ano": "EJA Médio",
     "conteudo": "Leitura Crítica de Gráficos de Notícias e Fake News Numéricas",
-    "unidadeTematica": "Cultura Digital e Estatística",
+    "unidadeTematica": "Estatística e Probabilidade",
     "habilidadeMatematica": {
       "codigo": "EM13MAT202",
       "descricao": "Interpretar criticamente dados estatísticos divulgados em meios de comunicação, analisando a fidedignidade de escalas, gráficos truncados e amostragens."
@@ -978,6 +1263,224 @@ const CURRICULO_DATA = [
     "estrategiasSugeridas": "Oficina de checagem de notícias: os estudantes analisam manchetes com gráficos e corrigem a escala visual no Google Planilhas.",
     "praticasRecomendadas": [
       "PRAT-12",
+      "PRAT-06"
+    ],
+    "eixos": [
+      "Mundo Digital",
+      "Cultura Digital",
+      "Pensamento Computacional"
+    ]
+  },
+  {
+    "id": "CURR-EF7-DIG01",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "7º Ano",
+    "conteudo": "Representação Digital de Caracteres (Tabela ASCII) e Binário",
+    "unidadeTematica": "Números",
+    "habilidadeMatematica": {
+      "codigo": "EF07MA01",
+      "descricao": "Resolver e elaborar problemas com números naturais, envolvendo as noções de divisor e múltiplo e sistemas de representação."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF07CO01",
+      "descricao": "Compreender como símbolos alfanuméricos e caracteres são codificados em valores numéricos decimais e binários na memória do computador (Mundo Digital)."
+    },
+    "curriculoPE": "Currículo de Pernambuco (CEDIM-PE): Transição dos códigos secretos manuais para a codificação de texto padrão internacional utilizada em celulares e computadores.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "pilares": [
+      "Abstração",
+      "Reconhecimento de Padrões"
+    ],
+    "objetivosSugeridos": "Compreender que cada letra digitada no teclado corresponde a um número inteiro (Tabela ASCII) e convertê-la em binário de 8 bits (1 byte).",
+    "estrategiasSugeridas": "Atividade desplugada onde os alunos codificam seus nomes usando a tabela ASCII e transmitem mensagens secretas em cartões binários.",
+    "praticasRecomendadas": [
+      "PRAT-04",
+      "PRAT-18"
+    ]
+  },
+  {
+    "id": "CURR-EF8-CUL01",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "8º Ano",
+    "conteudo": "Cidadania Digital, Redes Sociais e Pesquisa Amostral",
+    "unidadeTematica": "Probabilidade e Estatística",
+    "habilidadeMatematica": {
+      "codigo": "EF08MA23",
+      "descricao": "Avaliar a adequação de diferentes técnicas amostrais para a elaboração de pesquisas de opinião, consumo e comportamento social."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF08CO04",
+      "descricao": "Analisar o funcionamento dos algoritmos de recomendação em plataformas digitais e os impactos das bolhas de informação na sociedade (Cultura Digital)."
+    },
+    "curriculoPE": "Currículo de Pernambuco (CEDIM-PE): Debater o tempo de tela, a pegada digital e a privacidade de dados de jovens e adolescentes nas redes sociais.",
+    "eixos": [
+      "Cultura Digital",
+      "Mundo Digital"
+    ],
+    "pilares": [
+      "Abstração",
+      "Decomposição"
+    ],
+    "objetivosSugeridos": "Elaborar pesquisa estatística escolar sobre o tempo de uso de redes sociais e avaliar criticamente como os algoritmos retêm a atenção dos usuários.",
+    "estrategiasSugeridas": "Coleta de dados anônimos na turma e tabulação no Google Planilhas, discutindo a relação entre matemática, estatística e saúde mental digital.",
+    "praticasRecomendadas": [
+      "PRAT-12",
+      "PRAT-16"
+    ]
+  },
+  {
+    "id": "CURR-EF9-DIG01",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "9º Ano",
+    "conteudo": "Topologia de Redes, Grafos e Roteamento de Pacotes de Dados",
+    "unidadeTematica": "Geometria",
+    "habilidadeMatematica": {
+      "codigo": "EF09MA14",
+      "descricao": "Aplicar o Teorema de Pitágoras e relações métricas para cálculo de distâncias entre pontos no espaço e malhas de conexão."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF09CO02",
+      "descricao": "Compreender como a infraestrutura de redes e cabos submarinos transporta dados fragmentados em pacotes através da rota mais rápida (Mundo Digital)."
+    },
+    "curriculoPE": "Currículo de Pernambuco (CEDIM-PE): Estudo da chegada de cabos de fibra óptica submarinos no litoral do Nordeste e a infraestrutura física da internet.",
+    "eixos": [
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "pilares": [
+      "Algoritmos",
+      "Decomposição"
+    ],
+    "objetivosSugeridos": "Modelar uma rede de computadores escolar como um grafo ponderado e calcular a rota de envio de pacotes com menor distância total.",
+    "estrategiasSugeridas": "Simulação desplugada de roteamento de pacotes na sala de aula: alunos representam roteadores que repassam cartas pelo caminho mais rápido.",
+    "praticasRecomendadas": [
+      "PRAT-19",
+      "PRAT-01"
+    ]
+  },
+  {
+    "id": "CURR-EF9-CUL01",
+    "etapa": "Ensino Fundamental (Anos Finais)",
+    "ano": "9º Ano",
+    "conteudo": "Combate à Desinformação: Checagem de Gráficos Manipulados",
+    "unidadeTematica": "Probabilidade e Estatística",
+    "habilidadeMatematica": {
+      "codigo": "EF09MA21",
+      "descricao": "Analisar e identificar, em gráficos divulgados pela mídia, os elementos que podem induzir a erros de leitura, como escalas inadequadas, omissão de legendas e distorções visuais."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EF09CO04",
+      "descricao": "Desenvolver postura ética, analítica e responsável na verificação de fontes de informação digital e combate às fake news visuais (Cultura Digital)."
+    },
+    "curriculoPE": "Currículo de Pernambuco (CEDIM-PE): Formação para a cidadania midiática: análise de notícias e posts de redes sociais com gráficos enganosos.",
+    "eixos": [
+      "Cultura Digital",
+      "Mundo Digital"
+    ],
+    "pilares": [
+      "Abstração",
+      "Reconhecimento de Padrões"
+    ],
+    "objetivosSugeridos": "Identificar falhas intencionais em gráficos da mídia (eixo truncado, áreas desproporcionais) e recriar o gráfico com fidedignidade em planilhas digitais.",
+    "estrategiasSugeridas": "Oficina 'Detetives de Dados': os estudantes analisam manchetes reais e reconstroem os dados no Google Planilhas corrigindo a distorção.",
+    "praticasRecomendadas": [
+      "PRAT-16",
+      "PRAT-12"
+    ]
+  },
+  {
+    "id": "CURR-EM1-CUL01",
+    "etapa": "Ensino Médio",
+    "ano": "1º Ano EM",
+    "conteudo": "Educação Financeira Digital: Crédito Rotativo, Parcelamentos e Apostas Online (Bets)",
+    "unidadeTematica": "Matemática Financeira",
+    "habilidadeMatematica": {
+      "codigo": "EM13MAT203",
+      "descricao": "Aplicar conceitos de matemática financeira (juros simples e compostos, taxas de inflação, amortização) para analisar investimentos e compras a prazo."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EM13CO05",
+      "descricao": "Compreender os mecanismos algorítmicos de aplicativos financeiros, carteiras digitais e plataformas de apostas online, avaliando riscos e impactos na Cultura Digital."
+    },
+    "curriculoPE": "Currículo de Pernambuco (CEDIM-PE): Conscientização contra o superendividamento de jovens por apostas online e uso compulsivo do cartão de crédito.",
+    "eixos": [
+      "Cultura Digital",
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "pilares": [
+      "Algoritmos",
+      "Decomposição"
+    ],
+    "objetivosSugeridos": "Calcular o impacto dos juros compostos em dívidas de aplicativos financeiros e demonstrar matematicamente por que a probabilidade matemática das plataformas de apostas favorece estritamente a banca.",
+    "estrategiasSugeridas": "Simulação de investimentos vs dívidas no Google Planilhas e cálculo da esperança matemática negativa de jogos de azar e apostas.",
+    "praticasRecomendadas": [
+      "PRAT-14",
+      "PRAT-09"
+    ]
+  },
+  {
+    "id": "CURR-EM2-CUL01",
+    "etapa": "Ensino Médio",
+    "ano": "2º Ano EM",
+    "conteudo": "Criptografia RSA, Chaves Públicas e Números Primos Gigantes",
+    "unidadeTematica": "Estatística e Probabilidade",
+    "habilidadeMatematica": {
+      "codigo": "EM13MAT310",
+      "descricao": "Resolver problemas de contagem e teoria dos números aplicados à segurança da informação e transmissão sigilosa de dados."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EM13CO04",
+      "descricao": "Compreender os princípios de funcionamento da criptografia assimétrica (chaves pública e privada) que protege transações bancárias e mensagens instantâneas (Mundo e Cultura Digital)."
+    },
+    "curriculoPE": "Currículo de Pernambuco (CEDIM-PE): Segurança da informação, proteção de dados pessoais e privacidade de comunicações governamentais e civis.",
+    "eixos": [
+      "Cultura Digital",
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "pilares": [
+      "Abstração",
+      "Algoritmos"
+    ],
+    "objetivosSugeridos": "Compreender como a multiplicação de dois números primos é fácil para o computador, mas a fatoração do produto é computacionalmente inviável, sustentando o algoritmo RSA.",
+    "estrategiasSugeridas": "Simulação simplificada com primos pequenos (p=3, q=11) calculando chaves de cifragem e decifragem.",
+    "praticasRecomendadas": [
+      "PRAT-04",
+      "PRAT-17"
+    ]
+  },
+  {
+    "id": "CURR-EM3-CUL01",
+    "etapa": "Ensino Médio",
+    "ano": "3º Ano EM",
+    "conteudo": "Inteligência Artificial, Viés Algorítmico e Ética na Cultura Digital",
+    "unidadeTematica": "Estatística e Probabilidade",
+    "habilidadeMatematica": {
+      "codigo": "EM13MAT312",
+      "descricao": "Resolver e elaborar problemas de probabilidade condicional e probabilidade total para tomada de decisões fundamentadas."
+    },
+    "habilidadeComputacao": {
+      "codigo": "EM13CO02",
+      "descricao": "Compreender como modelos de Inteligência Artificial utilizam probabilidades e estatística para aprender padrões, refletindo criticamente sobre viés algorítmico e discriminação de dados (Cultura Digital)."
+    },
+    "curriculoPE": "Currículo de Pernambuco (CEDIM-PE): O impacto da Inteligência Artificial no mundo do trabalho, na educação e nas decisões automatizadas da sociedade contemporânea.",
+    "eixos": [
+      "Cultura Digital",
+      "Mundo Digital",
+      "Pensamento Computacional"
+    ],
+    "pilares": [
+      "Abstração",
+      "Reconhecimento de Padrões"
+    ],
+    "objetivosSugeridos": "Compreender a relação entre probabilidade condicional e aprendizado de máquina; identificar casos reais de algoritmos de recrutamento ou reconhecimento facial com viés discriminatório.",
+    "estrategiasSugeridas": "Debate em mesa redonda sobre os limites éticos da IA, com análise matemática de como bases de dados históricas desiguais geram previsões enviesadas.",
+    "praticasRecomendadas": [
+      "PRAT-20",
       "PRAT-06"
     ]
   }

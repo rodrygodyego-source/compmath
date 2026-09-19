@@ -1,6 +1,7 @@
 /**
- * Controller: Detalhes do Planejamento & Gerenciador de Planos
- * Exibe a lista de planejamentos salvos ou a ficha oficial completa com exportação para PDF.
+ * Controller: Detalhes do Planejamento & Gerenciador de Planos (v2.3)
+ * Exibe a ficha oficial completa para impressão em folha A4 com cabeçalho docente e escola,
+ * além do destaque para os 3 Eixos da BNCC Computação (Pensamento Computacional, Mundo Digital e Cultura Digital).
  */
 
 const DetalhesController = {
@@ -18,14 +19,12 @@ const DetalhesController = {
     }
   },
 
-  // Vista 1: Lista de Todos os Planejamentos
   renderListaPlanejamentos: function(container) {
     const self = this;
     const list = CompMathDB.getAllPlanejamentos();
 
     container.innerHTML = `
       <div class="fade-in space-y-6">
-        <!-- Cabeçalho da Seção -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-slate-200">
           <div>
             <div class="flex items-center gap-2 mb-1">
@@ -46,10 +45,9 @@ const DetalhesController = {
           </div>
         </div>
 
-        <!-- Barra de Busca e Filtros -->
         <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div class="relative flex-1">
-            <input type="text" id="planos-search" placeholder="🔍 Buscar por conteúdo, turma, ano ou código de habilidade..."
+            <input type="text" id="planos-search" placeholder="🔍 Buscar por conteúdo, turma, escola, professor ou código..."
               value="${self.searchQuery}"
               class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
           </div>
@@ -58,10 +56,7 @@ const DetalhesController = {
           </span>
         </div>
 
-        <!-- Lista de Cards dos Planejamentos -->
-        <div id="planos-cards-container" class="space-y-4">
-          <!-- Injetado via JS -->
-        </div>
+        <div id="planos-cards-container" class="space-y-4"></div>
 
         <!-- Modal de Backup JSON -->
         <div id="backup-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
@@ -73,7 +68,7 @@ const DetalhesController = {
               <button onclick="document.querySelector('#backup-modal').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 font-bold">✕</button>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed">
-              Você pode baixar uma cópia de segurança de todos os seus planejamentos em formato JSON ou restaurar dados salvos em outro computador.
+              Baixe uma cópia de segurança de todos os seus planejamentos em formato JSON ou restaure dados salvos em outro computador.
             </p>
             <div class="flex flex-wrap gap-2 pt-2">
               <button onclick="DetalhesController.baixarBackupArquivo()" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold">
@@ -120,12 +115,15 @@ const DetalhesController = {
     let filtered = list.filter(p => {
       if (!self.searchQuery) return true;
       const text = [
+        p.nomeProfessor,
+        p.escola,
         p.ano,
         p.turma,
         p.conteudo,
         p.habilidadeMatematicaCodigo,
         p.habilidadeComputacaoCodigo,
         p.objetivos,
+        (p.eixos || []).join(' '),
         (p.pilares || []).join(' ')
       ].join(' ').toLowerCase();
       return text.includes(self.searchQuery);
@@ -140,7 +138,7 @@ const DetalhesController = {
         <div class="bg-white rounded-xl p-8 text-center border border-slate-200">
           <div class="text-3xl mb-2">📋</div>
           <h4 class="font-bold text-slate-800 text-base mb-1">Nenhum planejamento encontrado</h4>
-          <p class="text-xs sm:text-sm text-slate-500 mb-4">Que tal criar uma nova aula articulada com a BNCC Computação?</p>
+          <p class="text-xs sm:text-sm text-slate-500 mb-4">Elabore sua aula integrada com os 3 eixos da BNCC Computação!</p>
           <a href="#planejamento" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold shadow">
             ➕ Elaborar Planejamento
           </a>
@@ -156,12 +154,13 @@ const DetalhesController = {
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:border-blue-300 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div class="space-y-2 flex-1">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="px-2.5 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold">
+              <span class="px-2.5 py-1 bg-blue-100 text-blue-900 rounded-full text-xs font-bold">
                 ${p.ano || 'Geral'}
               </span>
-              <span class="text-xs font-medium text-slate-500">
+              <span class="text-xs font-semibold text-slate-700">
                 ${p.turma ? `Turma: <strong>${p.turma}</strong>` : 'Turma livre'}
               </span>
+              <span class="text-xs text-slate-500">• 🏛️ ${p.escola || 'Escola não informada'}</span>
               <span class="text-xs text-slate-400">• Atualizado em ${dataFormatada}</span>
             </div>
 
@@ -171,31 +170,32 @@ const DetalhesController = {
               </a>
             </h3>
 
-            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600 font-mono">
-              <span class="bg-slate-100 text-blue-900 font-bold px-2 py-0.5 rounded">
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+              <span class="text-slate-600 font-medium">Docente: <strong>${p.nomeProfessor || 'Docente'}</strong></span>
+              <span class="text-slate-400">•</span>
+              <span class="bg-slate-100 text-blue-900 font-bold px-2 py-0.5 rounded font-mono">
                 📐 ${p.habilidadeMatematicaCodigo}
               </span>
-              <span class="bg-slate-100 text-emerald-900 font-bold px-2 py-0.5 rounded">
+              <span class="bg-slate-100 text-emerald-900 font-bold px-2 py-0.5 rounded font-mono">
                 💻 ${p.habilidadeComputacaoCodigo}
               </span>
-              <span class="font-sans text-slate-500">⏱️ ${p.tempoPrevisto || '2 aulas'}</span>
+              <span class="text-slate-500">⏱️ ${p.tempoPrevisto || '2 aulas'}</span>
             </div>
 
-            <div class="flex flex-wrap gap-1 pt-1">
-              ${(p.pilares || []).map(pilar => `
-                <span class="text-[10px] px-2 py-0.5 rounded-full font-medium ${
-                  pilar === 'Algoritmos' ? 'badge-algoritmos' :
-                  pilar === 'Abstração' ? 'badge-abstracao' :
-                  pilar === 'Decomposição' ? 'badge-decomposicao' : 'badge-padroes'
-                }">${pilar}</span>
+            <!-- Eixos da BNCC Computação -->
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              ${(p.eixos || ["Pensamento Computacional"]).map(eixo => `
+                <span class="text-[10px] px-2.5 py-0.5 rounded-full font-bold ${
+                  eixo === 'Pensamento Computacional' ? 'badge-eixo-pc' :
+                  eixo === 'Mundo Digital' ? 'badge-eixo-md' : 'badge-eixo-cd'
+                }">${eixo === 'Pensamento Computacional' ? '🧠' : eixo === 'Mundo Digital' ? '💻' : '👥'} ${eixo}</span>
               `).join('')}
             </div>
           </div>
 
-          <!-- Ações Rápidas -->
           <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
             <a href="#detalhes?id=${p.id}" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold shadow-sm transition-colors flex items-center gap-1">
-              <span>👁️</span> Visualizar Ficha
+              <span>👁️</span> Ficha Oficial
             </a>
             <a href="#planejamento?id=${p.id}" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition-colors" title="Editar planejamento">
               ✏️
@@ -212,7 +212,6 @@ const DetalhesController = {
     }).join('');
   },
 
-  // Vista 2: Ficha Oficial do Planejamento Integrado
   renderFichaPlanejamento: function(container, id) {
     const plan = CompMathDB.getPlanejamentoById(id);
     if (!plan) {
@@ -220,7 +219,7 @@ const DetalhesController = {
         <div class="bg-white rounded-xl p-8 text-center border border-slate-200">
           <h3 class="text-lg font-bold text-slate-800 mb-2">Planejamento não encontrado</h3>
           <p class="text-xs text-slate-500 mb-4">O identificador informado não corresponde a nenhum plano salvo.</p>
-          <a href="#detalhes" class="px-4 py-2 bg-blue-700 text-white rounded-lg text-xs font-semibold">Voltar para Meus Planejamentos</a>
+          <a href="#detalhes" class="px-4 py-2 bg-blue-700 text-white rounded-lg text-xs font-semibold">Voltar</a>
         </div>
       `;
       return;
@@ -231,7 +230,6 @@ const DetalhesController = {
 
     container.innerHTML = `
       <div class="fade-in space-y-6 max-w-4xl mx-auto">
-        <!-- Barra de Navegação e Ações de Exportação -->
         <div class="no-print flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200">
           <a href="#detalhes" class="text-xs font-semibold text-slate-600 hover:text-blue-700 flex items-center gap-1">
             ← Voltar para Todos os Planejamentos
@@ -243,76 +241,90 @@ const DetalhesController = {
             <a href="#planejamento?id=${plan.id}" class="px-3.5 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold shadow-sm transition-colors flex items-center gap-1">
               <span>✏️</span> Editar
             </a>
-            <button onclick="DetalhesController.duplicar('${plan.id}')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition-colors" title="Duplicar para outra turma">
+            <button onclick="DetalhesController.duplicar('${plan.id}')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition-colors" title="Duplicar">
               📋 Duplicar
             </button>
-            <button onclick="DetalhesController.copiarTextoFormatado('${plan.id}')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition-colors" title="Copiar texto para colar no SIEPE / Diário">
+            <button onclick="DetalhesController.copiarTextoFormatado('${plan.id}')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition-colors">
               📄 Copiar Texto
             </button>
-            <button onclick="DetalhesController.confirmarExclusao('${plan.id}')" class="px-3 py-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg text-xs transition-colors" title="Excluir">
+            <button onclick="DetalhesController.confirmarExclusao('${plan.id}')" class="px-3 py-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg text-xs transition-colors">
               🗑️
             </button>
           </div>
         </div>
 
-        <!-- Ficha Oficial do Planejamento (Otimizada para Impressão e PDF) -->
+        <!-- Ficha Oficial Formatada para Impressão A4 / PDF -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-10 shadow-sm print-page space-y-6">
-          <!-- Cabeçalho Oficial -->
+          
+          <!-- Cabeçalho Oficial com Escola e Docente -->
           <div class="text-center pb-6 border-b-2 border-slate-800 space-y-1">
-            <p class="text-[11px] font-bold tracking-widest text-slate-600 uppercase">
-              Governo do Estado de Pernambuco • Secretaria de Educação e Esportes
+            <p class="text-xs sm:text-sm font-extrabold tracking-widest text-slate-800 uppercase">
+              ${plan.escola || 'Escola da Rede de Ensino'}
             </p>
-            <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight uppercase">
-              Planejamento Pedagógico Integrado: Matemática & Computação
+            <h1 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight uppercase">
+              Plano de Aula Integrado: Matemática & BNCC Computação
             </h1>
-            <p class="text-xs text-slate-500 font-medium">
-              CompMath • Plataforma de Apoio Curricular • BNCC Computação (Resolução CNE/CP 1/2022)
+            <p class="text-[11px] text-slate-500 font-semibold">
+              Articulação com os 3 Eixos da BNCC Computação (Resolução CNE/CP 1/2022) • Currículo de PE (CEDIM-PE)
             </p>
           </div>
 
-          <!-- Quadro de Identificação -->
+          <!-- Quadro de Identificação Docente e da Turma -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs">
+            <div>
+              <span class="text-slate-500 font-semibold block">Docente Responsável:</span>
+              <strong class="text-slate-900 text-sm">${plan.nomeProfessor || 'Docente de Matemática'}</strong>
+            </div>
             <div>
               <span class="text-slate-500 font-semibold block">Etapa / Ano Escolar:</span>
               <strong class="text-slate-900 text-sm">${plan.ano || 'Não informado'}</strong>
             </div>
             <div>
-              <span class="text-slate-500 font-semibold block">Turma:</span>
-              <strong class="text-slate-900 text-sm">${plan.turma || 'Livre / Múltiplas'}</strong>
+              <span class="text-slate-500 font-semibold block">Turma e Turno:</span>
+              <strong class="text-slate-900 text-sm">${plan.turma || 'Livre'} (${plan.turno || 'Regular'})</strong>
             </div>
             <div>
-              <span class="text-slate-500 font-semibold block">Carga Horária Prevista:</span>
-              <strong class="text-slate-900 text-sm">${plan.tempoPrevisto || '2 aulas (100 min)'}</strong>
-            </div>
-            <div>
-              <span class="text-slate-500 font-semibold block">Data de Registro:</span>
-              <strong class="text-slate-900 text-sm">${dataAtualizacao || dataCriacao}</strong>
+              <span class="text-slate-500 font-semibold block">Carga Horária / Data:</span>
+              <strong class="text-slate-900 text-sm">${plan.tempoPrevisto || '2 aulas'} • ${dataAtualizacao || dataCriacao}</strong>
             </div>
           </div>
 
           <!-- Tema / Conteúdo Central -->
           <div class="space-y-1">
-            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Conteúdo Matemático Curricular:</span>
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Conteúdo Curricular da BNCC Matemática:</span>
             <h2 class="text-lg sm:text-xl font-bold text-blue-900 leading-snug">
               ${plan.conteudo}
             </h2>
           </div>
 
-          <!-- Articulação Curricular Lado a Lado -->
+          <!-- Articulação com os 3 Eixos da BNCC Computação -->
+          <div class="space-y-2">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block">
+              Eixos da BNCC Computação Mobilizados (Res. CNE/CP nº 1/2022):
+            </span>
+            <div class="flex flex-wrap gap-2">
+              ${(plan.eixos || ["Pensamento Computacional"]).map(eixo => `
+                <span class="text-xs px-3 py-1 rounded-full font-bold ${
+                  eixo === 'Pensamento Computacional' ? 'badge-eixo-pc' :
+                  eixo === 'Mundo Digital' ? 'badge-eixo-md' : 'badge-eixo-cd'
+                }">${eixo === 'Pensamento Computacional' ? '🧠' : eixo === 'Mundo Digital' ? '💻' : '👥'} ${eixo}</span>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Habilidades Lado a Lado -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Habilidade BNCC Matemática -->
-            <div class="p-4 bg-blue-50/40 rounded-xl border border-blue-200 space-y-2">
+            <div class="p-4 bg-blue-50/40 rounded-xl border border-blue-200 space-y-1.5">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-blue-900 uppercase tracking-wide">📐 BNCC Matemática</span>
+                <span class="text-xs font-bold text-blue-900 uppercase tracking-wide">📐 Habilidade BNCC Matemática</span>
                 <span class="font-mono text-xs font-bold px-2 py-0.5 bg-blue-200 text-blue-900 rounded">${plan.habilidadeMatematicaCodigo}</span>
               </div>
               <p class="text-xs text-slate-800 leading-relaxed">${plan.habilidadeMatematicaDescricao}</p>
             </div>
 
-            <!-- Habilidade BNCC Computação -->
-            <div class="p-4 bg-emerald-50/40 rounded-xl border border-emerald-200 space-y-2">
+            <div class="p-4 bg-emerald-50/40 rounded-xl border border-emerald-200 space-y-1.5">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-emerald-900 uppercase tracking-wide">💻 BNCC Computação</span>
+                <span class="text-xs font-bold text-emerald-900 uppercase tracking-wide">💻 Habilidade BNCC Computação</span>
                 <span class="font-mono text-xs font-bold px-2 py-0.5 bg-emerald-200 text-emerald-900 rounded">${plan.habilidadeComputacaoCodigo}</span>
               </div>
               <p class="text-xs text-slate-800 leading-relaxed">${plan.habilidadeComputacaoDescricao}</p>
@@ -322,24 +334,26 @@ const DetalhesController = {
           <!-- Orientações do Currículo de Pernambuco -->
           ${plan.curriculoPE ? `
             <div class="p-4 bg-amber-50/50 rounded-xl border border-amber-200 text-xs space-y-1">
-              <span class="font-bold text-amber-900 block">🏛️ Orientações do Currículo de Pernambuco:</span>
+              <span class="font-bold text-amber-900 block">🏛️ Orientações do Currículo de Pernambuco (CEDIM-PE):</span>
               <p class="text-amber-950 leading-relaxed">${plan.curriculoPE}</p>
             </div>
           ` : ''}
 
           <!-- Pilares do Pensamento Computacional -->
-          <div class="space-y-2">
-            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Pilares do Pensamento Computacional Envolvidos:</span>
-            <div class="flex flex-wrap gap-2">
-              ${(plan.pilares || []).map(pilar => `
-                <span class="text-xs px-3 py-1 rounded-full font-semibold ${
-                  pilar === 'Algoritmos' ? 'badge-algoritmos' :
-                  pilar === 'Abstração' ? 'badge-abstracao' :
-                  pilar === 'Decomposição' ? 'badge-decomposicao' : 'badge-padroes'
-                }">🧠 ${pilar}</span>
-              `).join('')}
+          ${(plan.pilares && plan.pilares.length > 0) ? `
+            <div class="space-y-1.5">
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Pilares do Pensamento Computacional Envolvidos:</span>
+              <div class="flex flex-wrap gap-2">
+                ${plan.pilares.map(pilar => `
+                  <span class="text-xs px-2.5 py-0.5 rounded-full font-semibold ${
+                    pilar === 'Algoritmos' ? 'badge-algoritmos' :
+                    pilar === 'Abstração' ? 'badge-abstracao' :
+                    pilar === 'Decomposição' ? 'badge-decomposicao' : 'badge-padroes'
+                  }">🧠 ${pilar}</span>
+                `).join('')}
+              </div>
             </div>
-          </div>
+          ` : ''}
 
           <!-- Objetivos de Aprendizagem -->
           <div class="space-y-2 pt-2 border-t border-slate-100">
@@ -347,25 +361,25 @@ const DetalhesController = {
               <span>🎯</span> Objetivos de Aprendizagem
             </h3>
             <div class="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line bg-slate-50/60 p-4 rounded-xl border border-slate-200">
-              ${plan.objetivos || 'Objetivos gerais do componente curricular.'}
+              ${plan.objetivos || 'Objetivos de aprendizagem da aula.'}
             </div>
           </div>
 
-          <!-- Estratégias Metodológicas e Desenvolvimento -->
+          <!-- Encaminhamento Metodológico -->
           <div class="space-y-2">
             <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
               <span>💡</span> Encaminhamento Metodológico / Estratégias Pedagógicas
             </h3>
             <div class="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line bg-slate-50/60 p-4 rounded-xl border border-slate-200">
-              ${plan.estrategias || 'Estratégias descritas pelo professor.'}
+              ${plan.estrategias || 'Estratégias descritas pelo docente.'}
             </div>
           </div>
 
-          <!-- Atividades e Práticas -->
+          <!-- Atividades Práticas -->
           ${plan.atividades ? `
             <div class="space-y-2">
               <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-                <span>🧩</span> Atividades Práticas (Plugadas / Desplugadas)
+                <span>🧩</span> Atividades e Práticas (Plugadas / Desplugadas)
               </h3>
               <div class="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line bg-slate-50/60 p-4 rounded-xl border border-slate-200">
                 ${plan.atividades}
@@ -376,7 +390,7 @@ const DetalhesController = {
           <!-- Recursos Didáticos -->
           ${plan.recursos ? `
             <div class="space-y-1">
-              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Recursos e Materiais Didáticos:</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Recursos Didáticos e Tecnológicos:</span>
               <p class="text-xs sm:text-sm text-slate-700">${plan.recursos}</p>
             </div>
           ` : ''}
@@ -384,18 +398,18 @@ const DetalhesController = {
           <!-- Avaliação Formativa -->
           <div class="space-y-2 pt-2 border-t border-slate-100">
             <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-              <span>📊</span> Critérios de Avaliação e Rubricas Formativas
+              <span>📊</span> Avaliação Formativa e Rubricas
             </h3>
             <div class="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line bg-slate-50/60 p-4 rounded-xl border border-slate-200">
-              ${plan.avaliacao || 'Avaliação processual e contínua baseada na participação e resolução de problemas.'}
+              ${plan.avaliacao || 'Avaliação processual baseada na resolução de problemas.'}
             </div>
           </div>
 
-          <!-- Assinatura / Rodapé da Ficha -->
+          <!-- Rodapé de Assinatura Oficial do Docente -->
           <div class="pt-8 mt-8 border-t border-slate-300 text-center space-y-1">
-            <div class="w-64 border-b border-slate-400 mx-auto mb-2"></div>
-            <p class="text-xs font-bold text-slate-800">Prof. Rodrygo Dyego da Silva Nascimento</p>
-            <p class="text-[11px] text-slate-500">Docente de Matemática • Rede Pública de Ensino (PE/Igarassu)</p>
+            <div class="w-72 border-b border-slate-400 mx-auto mb-2"></div>
+            <p class="text-xs font-bold text-slate-900">${plan.nomeProfessor || 'Professor(a) Responsável'}</p>
+            <p class="text-[11px] text-slate-500 font-medium">${plan.escola || 'Unidade Escolar'} • Componente Curricular: Matemática</p>
           </div>
         </div>
       </div>
@@ -423,16 +437,18 @@ const DetalhesController = {
     if (!p) return;
 
     const texto = `
-PLANEJAMENTO PEDAGÓGICO INTEGRADO: MATEMÁTICA & COMPUTAÇÃO (COMPMATH)
+PLANO DE AULA INTEGRADO: MATEMÁTICA & BNCC COMPUTAÇÃO (COMPMATH)
 ----------------------------------------------------------------------
-Etapa / Ano: ${p.ano} | Turma: ${p.turma || 'Geral'} | Duração: ${p.tempoPrevisto || '2 aulas'}
+Escola: ${p.escola || 'Rede de Ensino'}
+Docente: ${p.nomeProfessor || 'Professor(a)'}
+Etapa / Ano: ${p.ano} | Turma: ${p.turma || 'Geral'} (${p.turno || 'Regular'}) | Duração: ${p.tempoPrevisto || '2 aulas'}
 Conteúdo: ${p.conteudo}
 
-ARTICULAÇÃO CURRICULAR:
+EIXOS DA BNCC COMPUTAÇÃO: ${(p.eixos || ["Pensamento Computacional"]).join(', ')}
 • BNCC Matemática: [${p.habilidadeMatematicaCodigo}] ${p.habilidadeMatematicaDescricao}
 • BNCC Computação: [${p.habilidadeComputacaoCodigo}] ${p.habilidadeComputacaoDescricao}
 • Currículo PE: ${p.curriculoPE || 'Orientações complementares'}
-• Pilares: ${(p.pilares || []).join(', ')}
+• Pilares do PC: ${(p.pilares || []).join(', ')}
 
 OBJETIVOS DE APRENDIZAGEM:
 ${p.objetivos}
@@ -444,11 +460,9 @@ ATIVIDADES PRÁTICAS:
 ${p.atividades}
 
 RECURSOS: ${p.recursos}
-
-AVALIAÇÃO:
-${p.avaliacao}
+AVALIAÇÃO: ${p.avaliacao}
 ----------------------------------------------------------------------
-Docente: Prof. Rodrygo Dyego da Silva Nascimento
+Assinatura: ${p.nomeProfessor || 'Docente'}
     `.trim();
 
     navigator.clipboard.writeText(texto).then(() => {
